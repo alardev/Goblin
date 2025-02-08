@@ -10,6 +10,7 @@ in {
     ./git
     ./home
     ./layout
+    ./mail
     ./matrix
     ./networking
     ./nginx
