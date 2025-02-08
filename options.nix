@@ -18,10 +18,11 @@ in {
       # Generally server options
       ssh.enable = mkEnableOption "Install my public key to allow accessing this machine via ssh.";
       nginx.enable = mkEnableOption "Enable nginx.";
+      mail.enable = mkEnableOption "Enable mail server.";
       website.enable = mkEnableOption "Serve website through nginx. Nginx must be enabled to work correctly.";
       fedi.enable = mkEnableOption "Host a fedi server on this machine.";
-      matrix.enable = mkEnableOption "Host a matrix server on this machine";
-      git.enable = mkEnableOption "Host a git server on this machine";
+      matrix.enable = mkEnableOption "Host a matrix server on this machine.";
+      git.enable = mkEnableOption "Host a git server on this machine.";
 
       # Mixed and more complex options
       username = mkOption {
