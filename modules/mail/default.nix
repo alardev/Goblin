@@ -65,7 +65,7 @@ in mkIf conf.mail.enable {
       };
       authentication.fallback-admin = {
         user = "admin";
-        secret = "%{file:/root/stalwart-admin-pwd}%";
+        secret = "%{file:/root/stalwart-admin-passwd}%";
       };
     };
   };
