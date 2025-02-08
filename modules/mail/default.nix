@@ -26,7 +26,7 @@ in mkIf conf.mail.enable {
             bind = "[::]:993";
           };
           jmap = {
-            protocl = "jmap";
+            protocol = "jmap";
             bind = "[::]:8080";
             url = "https://chpu.eu";
           };
