@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }: let
+{ lib, config, ... }: let
   inherit (lib) mkIf;
   inherit (config) conf;
 in mkIf conf.fedi.enable {
