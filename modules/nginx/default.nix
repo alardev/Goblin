@@ -18,7 +18,7 @@ in mkIf conf.nginx.enable {
       "chpu.eu" = {
         group = "nginx";
         domain = "chpu.eu";
-        extraDomainNames = [ "*.twoneis.site" ];
+        extraDomainNames = [ "*.chpu.eu" ];
         dnsProvider = "porkbun";
         email = "mira.cp.0909@gmail.com";
         environmentFile = "/root/porkbun-creds";
