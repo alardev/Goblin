@@ -2,6 +2,39 @@
   inherit (config) conf;
   inherit (lib) mkIf;
 in mkIf conf.mail.enable {
+  services.nginx = {
+    virtualHosts = {
+      "webadmin.chpu.eu" = {
+        serverAliases = [
+          "mta-sts.chpu.eu"
+          "autoconfig.chpu.eu"
+          "autodiscover.chpu.eu"
+          "mail.chpu.eu"
+        ];
+        locations."/".proxyPass = "http://localhost:8080";
+      };
+    };
+    streamConfig = ''
+      server {
+          listen 25 proxy_protocol;
+          proxy_pass 127.0.0.1:10025;
+          proxy_protocol on;
+      }
+
+      server {
+          listen 993 proxy_protocol;
+          proxy_pass 127.0.0.1:10993;
+          proxy_protocol on;
+      }
+
+      server {
+          listen 465 proxy_protocol;
+          proxy_pass 127.0.0.1:10465;
+          proxy_protocol on;
+      }
+    '';
+  };
+
   services.stalwart-mail = {
     enable = true;
     openFirewall = true;
@@ -12,23 +45,26 @@ in mkIf conf.mail.enable {
           enable = true;
           implicit = true;
         };
+        proxy = {
+          
+        };
         listener = {
           smtp = {
             protocol = "smtp";
-            bind = "[::]:25";
+            bind = "[::]:10025";
           };
           submissions = {
             protocol = "smtp";
-            bind = "[::]:465";
+            bind = "[::]:10465";
           };
           imaps = {
             protocol = "imap";
-            bind = "[::]:993";
+            bind = "[::]:10993";
           };
           jmap = {
             protocol = "jmap";
             bind = "[::]:8080";
-            url = "https://chpu.eu";
+            url = "https://mail.chpu.eu";
           };
           management = {
             protocol = "http";
@@ -48,7 +84,7 @@ in mkIf conf.mail.enable {
         mechanism = "[plain]";
         directory = "'in-memory'";
       };
-      storage.directory = "'in-memory'";
+      storage.directory = "in-memory";
       session.rcpt.directory = "'in-memory'";
       queue.outbound.next-hop = "'local'";
       directory."imap".lookup.demains = [ "chpu.eu" ];
@@ -57,7 +93,7 @@ in mkIf conf.mail.enable {
         principals = [
           {
             class = "individual";
-            name = "Mira Chacku Purakal";
+            name = "mira";
             secret = "%{file:/root/email-mira-passwd}%";
             email = [ "mira@chpu.eu" ];
           }
