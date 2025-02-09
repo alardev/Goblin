@@ -5,6 +5,8 @@ in mkIf conf.mail.enable {
   services.nginx = {
     virtualHosts = {
       "webadmin.chpu.eu" = {
+        useACMEHost = "chpu.eu";
+        forceSSL = true;
         serverAliases = [
           "mta-sts.chpu.eu"
           "autoconfig.chpu.eu"
