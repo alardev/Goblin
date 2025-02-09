@@ -28,9 +28,6 @@ in mkIf conf.mail.enable {
           enable = true;
           implicit = true;
         };
-        proxy = {
-          
-        };
         listener = {
           smtp = {
             protocol = "smtp";
@@ -60,6 +57,7 @@ in mkIf conf.mail.enable {
         domain = "chpu.eu";
       };
       certificate.default = {
+        default = true;
         cert = "%{file:/var/lib/acme/chpu.eu/chain.pem}%";
         private-key = "%{file:/var/lib/acme/chpu.eu/key.pem}%";
       };

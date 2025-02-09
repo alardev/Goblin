@@ -30,6 +30,13 @@ in mkIf conf.nginx.enable {
 
   services.nginx = {
     enable = true;
+    virtualHosts = {
+      "chpu.eu" = {
+        serverName = "chpu.eu";
+        useACMEHost = "chpu.eu";
+        forceSSL = true;
+      };
+    };
   };
 
   networking.firewall.allowedTCPPorts = [
