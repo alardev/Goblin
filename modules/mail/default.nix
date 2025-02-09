@@ -22,6 +22,11 @@ in mkIf conf.mail.enable {
     enable = true;
     openFirewall = true;
     settings = {
+      config.local-keys = [
+        "certificate.default.cert"
+        "certificate.default.private-key"
+        "authentication.fallback-admin.secret"
+      ];
       server = {
         hostname = "chpu.eu";
         tls = {
@@ -58,7 +63,7 @@ in mkIf conf.mail.enable {
       };
       certificate.default = {
         default = true;
-        cert = "%{file:/var/lib/acme/chpu.eu/chain.pem}%";
+        cert = "%{file:/var/lib/acme/chpu.eu/cert.pem}%";
         private-key = "%{file:/var/lib/acme/chpu.eu/key.pem}%";
       };
       session.auth = {
