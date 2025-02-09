@@ -2,10 +2,10 @@
   conf = {
     ssh.enable = true;
     nginx.enable = true;
-    mail.enable = true;
-    website.enable = true;
-    fedi.enable = false; # Currently broken
-    matrix.enable = true;
+    mail.enable = false; # broken
+    website.enable = false; # broken
+    fedi.enable = false; # broken
+    matrix.enable = true; # broken
     git.enable = true;
 
     stateVersion = "25.05";
