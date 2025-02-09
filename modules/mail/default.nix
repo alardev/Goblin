@@ -95,7 +95,7 @@ in mkIf conf.mail.enable {
         principals = [
           {
             class = "individual";
-            name = "mira";
+            name = "mira@chpu.eu";
             secret = "%{file:/root/email-mira-passwd}%";
             email = [ "mira@chpu.eu" ];
           }
