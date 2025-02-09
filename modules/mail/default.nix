@@ -16,25 +16,6 @@ in mkIf conf.mail.enable {
         locations."/".proxyPass = "http://localhost:8080";
       };
     };
-    streamConfig = ''
-      server {
-          listen 25 proxy_protocol;
-          proxy_pass 127.0.0.1:10025;
-          proxy_protocol on;
-      }
-
-      server {
-          listen 993 proxy_protocol;
-          proxy_pass 127.0.0.1:10993;
-          proxy_protocol on;
-      }
-
-      server {
-          listen 465 proxy_protocol;
-          proxy_pass 127.0.0.1:10465;
-          proxy_protocol on;
-      }
-    '';
   };
 
   services.stalwart-mail = {
@@ -53,15 +34,15 @@ in mkIf conf.mail.enable {
         listener = {
           smtp = {
             protocol = "smtp";
-            bind = "[::]:10025";
+            bind = "[::]:25";
           };
           submissions = {
             protocol = "smtp";
-            bind = "[::]:10465";
+            bind = "[::]:465";
           };
           imaps = {
             protocol = "imap";
-            bind = "[::]:10993";
+            bind = "[::]:993";
           };
           jmap = {
             protocol = "jmap";
@@ -79,8 +60,8 @@ in mkIf conf.mail.enable {
         domain = "chpu.eu";
       };
       certificate.default = {
-        cert = "%{file:/var/lib/acme/chpu.eu/cert.pem}%";
-        private-key = "%{file:/var/lib/acme/chpu.eu/key.pem}";
+        cert = "%{file:/var/lib/acme/chpu.eu/chain.pem}%";
+        private-key = "%{file:/var/lib/acme/chpu.eu/key.pem}%";
       };
       session.auth = {
         mechanism = "[plain]";
@@ -94,16 +75,16 @@ in mkIf conf.mail.enable {
         type = "memory";
         principals = [
           {
-            class = "individual";
+            type = "individual";
             name = "mira@chpu.eu";
-            secret = "%{file:/root/email-mira-passwd}%";
+            secret = "%{file:/root/stalwart/secret/mira}%";
             email = [ "mira@chpu.eu" ];
           }
         ];
       };
       authentication.fallback-admin = {
         user = "admin";
-        secret = "%{file:/root/stalwart-admin-passwd}%";
+        secret = "%{file:/root/stalwart/secret/admin}%";
       };
     };
   };
