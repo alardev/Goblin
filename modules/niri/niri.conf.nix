@@ -209,6 +209,7 @@ in {
     "Mod+Shift+F".action.fullscreen-window = [];
 
     "Mod+C".action.center-column = [];
+    "Mod+W".action.toggle-column-tabbed-display = [];
 
     "Mod+Equal".action.set-column-width = "+10%";
     "Mod+Minus".action.set-column-width = "-10%";
