@@ -29,7 +29,6 @@ in mkIf conf.apps.enable {
       chromium
       peaclock
       element-desktop
-      zoom-us
     ] ++ [
       time
       (mkXwlWrapper { pkgs = pkgs; name = "Prusa"; pkg = "prusa-slicer"; })
