@@ -140,6 +140,16 @@ in {
       "swayosd-client" "--output-volume" "mute-toggle"
     ];
 
+    "Mod+XF86AudioRaiseVolume".action.spawn = [ 
+      "swayosd-client" "--input-volume" "raise"
+    ];
+    "Mod+XF86AudioLowerVolume".action.spawn = [
+      "swayosd-client" "--input-volume" "lower"
+    ];
+    "Mod+XF86AudioMute".action.spawn = [
+      "swayosd-client" "--output-volume" "mute-toggle"
+    ];
+
     "XF86MonBrightnessDown".action.spawn = [
       "swayosd-client" "--brightness" "lower"
     ];
