@@ -13,7 +13,7 @@ in mkIf conf.mail.enable {
           "autodiscover.chpu.eu"
           "mail.chpu.eu"
         ];
-        locations."/".proxyPass = "http://localhost:8080";
+        locations."/".proxyPass = "http://localhost:9090";
       };
     };
   };
@@ -51,7 +51,7 @@ in mkIf conf.mail.enable {
           };
           management = {
             protocol = "http";
-            bind = [ "127.0.0.1:8080" ];
+            bind = [ "127.0.0.1:9090" ];
           };
         };
       };
@@ -64,37 +64,8 @@ in mkIf conf.mail.enable {
         cert = "%{file:/var/lib/acme/chpu.eu/cert.pem}%";
         private-key = "%{file:/var/lib/acme/chpu.eu/key.pem}%";
       };
-      session.auth = {
-        mechanism = "[plain, login]";
-        directory = "'default'";
-        must-match-sender = false;
-      };
-      store = {
-        rocksdb = {
-          type = "rocksdb";
-          path = "/opt/stalwart/data";
-        };
-      };
-      storage = {
-        data = "rocksdb";
-        directory = "default";
-        lookup = "rocksdb";
-      };
-      session.rcpt.directory = "'default'";
+      session.rcpt.directory = "'in-memory'";
       directory."imap".lookup.demains = [ "chpu.eu" ];
-      directory."default" = {
-        type = "internal";
-        store = "rocksdb";
-        principals = [
-          {
-            class = "individual";
-            name = "mira@chpu.eu";
-            description = "Mira Chacku Purakal";
-            secret = "%{file:/var/lib/stalwart-mail/secret/mira}%";
-            emails = [ "mira@chpu.eu" ];
-          }
-        ];
-      };
       authentication.fallback-admin = {
         user = "admin";
         secret = "%{file:/var/lib/stalwart-mail/secret/admin}%";
