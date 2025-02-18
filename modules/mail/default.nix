@@ -18,6 +18,8 @@ in mkIf conf.mail.enable {
     };
   };
 
+  users.users."stalwart-mail".extraGroups = [ "nginx" ];
+
   services.stalwart-mail = {
     enable = true;
     openFirewall = true;
@@ -35,7 +37,7 @@ in mkIf conf.mail.enable {
         };
         listener = {
           smtp = {
-            protocol = "smtp";
+            protocl = "smtp";
             bind = "[::]:25";
           };
           submissions = {
@@ -47,7 +49,7 @@ in mkIf conf.mail.enable {
             bind = "[::]:993";
           };
           jmap = {
-            protocol = "jmap";
+            protocol = "http";
             bind = "[::]:8080";
             url = "https://mail.chpu.eu";
           };
@@ -72,22 +74,22 @@ in mkIf conf.mail.enable {
       };
       storage.directory = "in-memory";
       session.rcpt.directory = "'in-memory'";
-      queue.outbound.next-hop = "'local'";
       directory."imap".lookup.demains = [ "chpu.eu" ];
       directory."in-memory" = {
         type = "memory";
         principals = [
           {
-            type = "individual";
-            name = "mira@chpu.eu";
-            secret = "%{file:/root/stalwart/secret/mira}%";
+            class = "individual";
+            name = "mira";
+            description = "Mira Chacku Purakal";
+            secret = "%{file:/var/lib/stalwart-mail/secret/mira}%";
             email = [ "mira@chpu.eu" ];
           }
         ];
       };
       authentication.fallback-admin = {
         user = "admin";
-        secret = "%{file:/root/stalwart/secret/admin}%";
+        secret = "%{file:/var/lib/stalwart-mail/secret/admin}%";
       };
     };
   };

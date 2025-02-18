@@ -2,7 +2,7 @@
   conf = {
     ssh.enable = true;
     nginx.enable = true;
-    mail.enable = false; # broken
+    mail.enable = true; # broken
     website.enable = false; # broken
     fedi.enable = false; # broken
     matrix.enable = true; # broken

@@ -5,6 +5,7 @@ in {
     ./apps
     ./containers
     ./fedi
+    ./firewall
     ./fonts
     ./games
     ./git
