@@ -18,6 +18,7 @@ in mkIf conf.git.enable {
     forgejo = {
       enable = true;
       database.type = "postgres";
+      user = "git";
       lfs.enable = true;
       settings = {
         server = {
