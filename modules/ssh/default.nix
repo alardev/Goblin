@@ -10,12 +10,10 @@ in mkIf conf.ssh.enable {
   };
 
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB5i6DgsV5wbkkEJzFbN624Sz0CKg9LGplfJUjeCpAdE"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMYy89cBNXjet2kBbOw7CKMJguyIq72EQV8ixo836nOH"
   ];
 
   users.users.${conf.username}.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB5i6DgsV5wbkkEJzFbN624Sz0CKg9LGplfJUjeCpAdE"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMYy89cBNXjet2kBbOw7CKMJguyIq72EQV8ixo836nOH"
   ];
 }
