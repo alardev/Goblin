@@ -36,10 +36,6 @@ in mkIf conf.mail.enable {
           implicit = true;
         };
         listener = {
-          smtp = {
-            protocl = "smtp";
-            bind = "[::]:25";
-          };
           submissions = {
             protocol = "smtp";
             bind = "[::]:465";
@@ -69,18 +65,30 @@ in mkIf conf.mail.enable {
         private-key = "%{file:/var/lib/acme/chpu.eu/key.pem}%";
       };
       session.auth = {
-        mechanism = "[plain]";
-        directory = "'in-memory'";
+        mechanism = "[plain, login]";
+        directory = "'default'";
+        must-match-sender = false;
       };
-      storage.directory = "in-memory";
-      session.rcpt.directory = "'in-memory'";
+      store = {
+        rocksdb = {
+          type = "rocksdb";
+          path = "/opt/stalwart/data";
+        };
+      };
+      storage = {
+        data = "rocksdb";
+        directory = "default";
+        lookup = "rocksdb";
+      };
+      session.rcpt.directory = "'default'";
       directory."imap".lookup.demains = [ "chpu.eu" ];
-      directory."in-memory" = {
-        type = "memory";
+      directory."default" = {
+        type = "internal";
+        store = "rocksdb";
         principals = [
           {
             class = "individual";
-            name = "mira";
+            name = "mira@chpu.eu";
             description = "Mira Chacku Purakal";
             secret = "%{file:/var/lib/stalwart-mail/secret/mira}%";
             emails = [ "mira@chpu.eu" ];
