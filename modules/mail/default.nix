@@ -83,7 +83,7 @@ in mkIf conf.mail.enable {
             name = "mira";
             description = "Mira Chacku Purakal";
             secret = "%{file:/var/lib/stalwart-mail/secret/mira}%";
-            email = [ "mira@chpu.eu" ];
+            emails = [ "mira@chpu.eu" ];
           }
         ];
       };
