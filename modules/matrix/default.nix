@@ -20,17 +20,6 @@ in mkIf conf.matrix.enable {
       };
     };
     "matrix.twoneis.site" = {
-      listen = [
-        {
-          addr = "95.111.239.134";
-          port = 443;
-          ssl = true;
-        } {
-          addr = "95.111.239.134";
-          port = 8448;
-          ssl = true;
-        }
-      ];
       serverName = "matrix.twoneis.site";
       forceSSL = true;
       useACMEHost = "twoneis.site";

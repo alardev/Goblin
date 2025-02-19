@@ -36,6 +36,11 @@ in mkIf conf.nginx.enable {
         useACMEHost = "chpu.eu";
         forceSSL = true;
       };
+      "twoneis.site" = {
+        serverName = "twoneis.site";
+        useACMEHost = "twoneis.site";
+        forceSSL = true;
+      };
     };
   };
 
