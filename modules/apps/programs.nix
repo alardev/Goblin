@@ -28,6 +28,7 @@ in mkIf conf.apps.enable {
       libreoffice-qt6
       chromium
       peaclock
+      fractal
       element-desktop
     ] ++ [
       time
