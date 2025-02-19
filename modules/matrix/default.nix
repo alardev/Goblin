@@ -3,14 +3,34 @@
   inherit (lib) mkIf;
 in mkIf conf.matrix.enable {
   services.nginx.virtualHosts = {
+    "twoneis.site" = {
+      serverName = "twoneis.site";
+      useACMEHost = "twoneis.site";
+      forceSSL = true;
+      locations = {
+        "/.well-known/matrix/server" = {
+          return = "200 '{\"m.server\": \"matrix.twoneis.site:443\"}'";
+        };
+      };
+    };
     "matrix.twoneis.site" = {
+      listen = [
+        {
+          addr = "95.111.239.134";
+          port = 443;
+          ssl = true;
+        } {
+          addr = "95.111.239.134";
+          port = 8448;
+          ssl = true;
+        }
+      ];
       serverName = "matrix.twoneis.site";
       forceSSL = true;
       useACMEHost = "twoneis.site";
       locations = {
         "/" = {
-          recommendedProxySettings = true;
-          proxyPass = "http://127.0.0.1:6167";
+          proxyPass = "http://localhost:6167";
         };
       };
     };
