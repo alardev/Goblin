@@ -11,6 +11,12 @@ in mkIf conf.matrix.enable {
         "/.well-known/matrix/server" = {
           return = "200 '{\"m.server\": \"matrix.twoneis.site:443\"}'";
         };
+        "/.well-known/matrix/client" = {
+          return = "200 '{\"m.homeserver\": {\"base_url\": \"https://matrix.twoneis.site\"}, \"org.matrix.msc3575.proxy\": {\"url\": \"https://matrix.twoneis.site\"}}'";
+        };
+        "/.well-known/matrix/support" = {
+          return = "200 '{\"contacts\": [{\"matrix_id\": \"@mira:twoneis.site\", \"email_address\": \"matrix@chpu.eu\", \"role\": \"m.role.admin\"}]}'";
+        };
       };
     };
     "matrix.twoneis.site" = {
@@ -31,6 +37,15 @@ in mkIf conf.matrix.enable {
       locations = {
         "/" = {
           proxyPass = "http://localhost:6167";
+        };
+        "/.well-known/matrix/server" = {
+          return = "200 '{\"m.server\": \"matrix.twoneis.site:443\"}'";
+        };
+        "/.well-known/matrix/client" = {
+          return = "200 '{\"m.homeserver\": {\"base_url\": \"https://matrix.twoneis.site\"}, \"org.matrix.msc3575.proxy\": {\"url\": \"https://matrix.twoneis.site\"}}'";
+        };
+        "/.well-known/matrix/support" = {
+          return = "200 '{\"contacts\": [{\"matrix_id\": \"@mira:twoneis.site\", \"email_address\": \"matrix@chpu.eu\", \"role\": \"m.role.admin\"}]}'";
         };
       };
     };
