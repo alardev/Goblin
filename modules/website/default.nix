@@ -8,7 +8,7 @@ in mkIf conf.website.enable {
       serverName = "twoneis.site";
       useACMEHost = "twoneis.site";
       forceSSL = true;
-      root = "/home/twoneis/website/";
+      root = "/var/lib/website/";
     };
   };
 }
