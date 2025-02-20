@@ -9,9 +9,6 @@ in mkIf conf.website.enable {
       useACMEHost = "twoneis.site";
       forceSSL = true;
       root = "/var/lib/website/";
-      extraConfig = "
-        index index.html;
-      ";
     };
   };
 }
