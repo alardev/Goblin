@@ -40,6 +40,10 @@ in mkIf conf.mail.enable {
             protocol = "smtp";
             bind = "[::]:465";
           };
+          smtp = {
+            protocol = "smtp";
+            bind = "[::]:25";
+          };
           imaps = {
             protocol = "imap";
             bind = "[::]:993";
@@ -64,8 +68,29 @@ in mkIf conf.mail.enable {
         cert = "%{file:/var/lib/acme/chpu.eu/cert.pem}%";
         private-key = "%{file:/var/lib/acme/chpu.eu/key.pem}%";
       };
-      session.rcpt.directory = "'in-memory'";
-      directory."imap".lookup.demains = [ "chpu.eu" ];
+      storage = {
+        data = "db";
+        fts = "db";
+        block = "db";
+        lookup = "db";
+        directory = "internal";
+      };
+      directory."internal" = {
+        type = "internal";
+        store = "db";
+      };
+      tracer."stdout" = {
+        type = "stdout";
+        level = "info";
+        ansi = false;
+        enable = true;
+      };
+      session.rcpt = {
+        directory = "'internal'";
+      };
+      blocked-ip = {
+        "" = "";
+      };
       authentication.fallback-admin = {
         user = "admin";
         secret = "%{file:/var/lib/stalwart-mail/secret/admin}%";
