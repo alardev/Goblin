@@ -1,15 +1,14 @@
 { lib, pkgs, config, ... }: let
   inherit (lib) mkIf;
   inherit (config) conf;
-  cfg = config.services.grafana.settings.server;
 in mkIf conf.grafana.enable {
   services.nginx = {
     virtualHosts = {
-      "grafana.twoneis.site" = {
+      "netdata.twoneis.site" = {
         useACMEHost = "twoneis.site";
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://${toString cfg.http_addr}:${toString cfg.http_port}";
+          proxyPass = "http://localhost:19999";
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
@@ -17,14 +16,14 @@ in mkIf conf.grafana.enable {
     };
   };
 
-  services.grafana = {
+  services.netdata = {
     enable = true;
-    settings = {
-      server = {
-        http_addr = "127.0.0.1";
-        http_port = 3001;
-        domain = "grafana.twoneis.site";
-      };
+    package = pkgs.netdata.override { withCloudUi = true; };
+    config.global = {
+      "memory mode" = "ram";
+      "debug log" = "none";
+      "access log" = "none";
+      "error log" = "syslog";
     };
   };
 }

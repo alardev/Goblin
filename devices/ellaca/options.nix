@@ -2,7 +2,7 @@
   conf = {
     ssh.enable = true;
     nginx.enable = true;
-    grafana.enable = true;
+    netdata.enable = true;
     mail.enable = false; # broken
     website.enable = true;
     fedi.enable = true;
