@@ -11,7 +11,6 @@ in mkIf conf.mail.enable {
           "mta-sts.chpu.eu"
           "autoconfig.chpu.eu"
           "autodiscover.chpu.eu"
-          "mail.chpu.eu"
         ];
         locations."/".proxyPass = "http://localhost:9090";
       };
