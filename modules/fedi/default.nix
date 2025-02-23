@@ -1,6 +1,7 @@
 { lib, pkgs, config, ... }: let
   inherit (lib) mkIf;
   inherit (config) conf;
+  inherit ((pkgs.formats.elixirConf { }).lib) mkMap;
 in mkIf conf.fedi.enable {
   services.akkoma = {
     enable = true;
@@ -9,8 +10,13 @@ in mkIf conf.fedi.enable {
         ":instance" = {
           name = "miras fedi";
           description = "miras akkoma instance";
-          email = "mira.cp.0909@gmail.com";
+          email = "fedi@chpu.eu";
           registration_open = false;
+        };
+
+        ":mrf_simple" = {
+          reject = mkMap {
+          };
         };
 
         "Pleroma.Web.Endpoint" = {
@@ -23,6 +29,7 @@ in mkIf conf.fedi.enable {
       };
     };
     nginx = {
+      serverName = "fedi.twoneis.site";
       useACMEHost = "twoneis.site";
       forceSSL = true;
     };
