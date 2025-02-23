@@ -13,7 +13,6 @@ in {
     ./layout
     ./mail
     ./matrix
-    ./netdata
     ./networking
     ./nginx
     ./niri

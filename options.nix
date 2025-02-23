@@ -18,7 +18,6 @@ in {
       # Generally server options
       ssh.enable = mkEnableOption "Install my public key to allow accessing this machine via ssh.";
       nginx.enable = mkEnableOption "Enable nginx. All the following options expect this to be enabled.";
-      netdata.enable = mkEnableOption "Enable netdata monitoring tool.";
       mail.enable = mkEnableOption "Enable mail server.";
       website.enable = mkEnableOption "Serve website through nginx.";
       fedi.enable = mkEnableOption "Host a fedi server on this machine.";
