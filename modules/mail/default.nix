@@ -87,9 +87,6 @@ in mkIf conf.mail.enable {
       session.rcpt = {
         directory = "'internal'";
       };
-      blocked-ip = {
-        "" = "";
-      };
       authentication.fallback-admin = {
         user = "admin";
         secret = "%{file:/var/lib/stalwart-mail/secret/admin}%";
