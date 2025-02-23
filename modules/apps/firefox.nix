@@ -134,7 +134,7 @@ in mkIf conf.apps.enable {
             "signon.rememberSignons" = false;
           };
 
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
             bitwarden
             sponsorblock
             ublock-origin
