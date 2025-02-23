@@ -22,7 +22,7 @@ in mkIf conf.grafana.enable {
     settings = {
       server = {
         http_addr = "127.0.0.1";
-        http_port = 3000;
+        http_port = 3001;
         domain = "grafana.twoneis.site";
       };
     };
