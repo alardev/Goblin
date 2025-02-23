@@ -2,9 +2,10 @@
   conf = {
     ssh.enable = true;
     nginx.enable = true;
+    netdata.enable = true;
     mail.enable = false; # broken
     website.enable = true;
-    fedi.enable = true; # broken
+    fedi.enable = true;
     matrix.enable = true;
     git.enable = true;
 

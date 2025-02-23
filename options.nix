@@ -17,9 +17,10 @@ in {
 
       # Generally server options
       ssh.enable = mkEnableOption "Install my public key to allow accessing this machine via ssh.";
-      nginx.enable = mkEnableOption "Enable nginx.";
+      nginx.enable = mkEnableOption "Enable nginx. All the following options expect this to be enabled.";
+      netdata.enable = mkEnableOption "Enable netdata metrics tool.";
       mail.enable = mkEnableOption "Enable mail server.";
-      website.enable = mkEnableOption "Serve website through nginx. Nginx must be enabled to work correctly.";
+      website.enable = mkEnableOption "Serve website through nginx.";
       fedi.enable = mkEnableOption "Host a fedi server on this machine.";
       matrix.enable = mkEnableOption "Host a matrix server on this machine.";
       git.enable = mkEnableOption "Host a git server on this machine.";
