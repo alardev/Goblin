@@ -1,7 +1,7 @@
 { lib, pkgs, config, ... }: let
   inherit (lib) mkIf;
   inherit (config) conf;
-in mkIf conf.grafana.enable {
+in mkIf conf.netdata.enable {
   services.nginx = {
     virtualHosts = {
       "netdata.twoneis.site" = {
