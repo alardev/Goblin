@@ -9,11 +9,11 @@ in {
     ./fonts
     ./games
     ./git
+    ./grafana
     ./home
     ./layout
     ./mail
     ./matrix
-    ./netdata
     ./networking
     ./nginx
     ./niri
