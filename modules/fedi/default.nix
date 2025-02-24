@@ -3,6 +3,8 @@
   inherit (config) conf;
   inherit ((pkgs.formats.elixirConf { }).lib) mkMap;
   neocat = (pkgs.callPackage ./neocat.nix { });
+  neofox = (pkgs.callPackage ./neofox.nix { });
+  blobfox = (pkgs.callPackage ./blobfox.nix { });
 in mkIf conf.fedi.enable {
   services.akkoma = {
     enable = true;
@@ -102,6 +104,8 @@ in mkIf conf.fedi.enable {
     };
     extraStatic = {
       "emoji/neocat" = neocat;
+      "emoji/neofox" = neofox;
+      "emoji/blobfox" = blobfox;
     };
     nginx = {
       serverName = "fedi.twoneis.site";

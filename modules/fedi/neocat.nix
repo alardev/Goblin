@@ -9,7 +9,7 @@ stdenvNoCC.mkDerivation {
 
   src = fetchurl {
     url = "https://volpeon.ink/emojis/neocat/neocat.zip";
-    hash = "";
+    hash = "sha256-TLgD6uSBwVurIhvViAyOoVLnylmDq+H4obPKjCDbjoE=";
   };
 
   sourceRoot = ".";
