@@ -11,7 +11,7 @@ stdenvNoCC.mkDerivation {
     runHook preInstall
 
     mkdir -p $out
-    cp 512w/*.png $out
+    cp *.png $out
 
     runHook postInstall
   '';
