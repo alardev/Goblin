@@ -20,6 +20,7 @@ in mkIf conf.apps.enable {
       snapshot
       nautilus
       inkscape
+      libresprite
       # blender
       gnome-disk-utility
       fragments
