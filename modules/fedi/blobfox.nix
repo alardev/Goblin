@@ -4,11 +4,11 @@
   unzip,
 }:
 stdenvNoCC.mkDerivation {
-  pname = "neocat";
-  version = "2023.08.10";
+  pname = "blobfox";
+  version = "2020.09.04";
 
   src = fetchurl {
-    url = "https://volpeon.ink/emojis/neocat/neocat.zip";
+    url = "https://volpeon.ink/emojis/blobfox/blobfox.zip";
     hash = "";
   };
 
