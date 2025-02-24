@@ -111,8 +111,8 @@ in mkIf conf.fedi.enable {
       "emoji/blobhaj" = blobhaj;
       "emoji/blobhajFlags" = blobhajFlags;
 
-      "frontends/pleroma-fe/stable/static/styles.json" = ./styles.json;
-      "static/themes/rosepine.json" = ./rosepine.json;
+      "frontends/pleroma-fe/stable/static/styles.json" = pkgs.writeText "styles.json" ./styles.json;
+      "static/themes/rosepine.json" = pkgs.writeText "rosepine.json" ./rosepine.json;
     };
     nginx = {
       serverName = "fedi.twoneis.site";
