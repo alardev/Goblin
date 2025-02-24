@@ -5,6 +5,8 @@
   neocat = (pkgs.callPackage ./neocat.nix { });
   neofox = (pkgs.callPackage ./neofox.nix { });
   blobfox = (pkgs.callPackage ./blobfox.nix { });
+  blobhaj = (pkgs.callPackage ./blobhaj.nix { });
+  blobhajFlags = (pkgs.callPackage ./blobhajFlags.nix { });
 in mkIf conf.fedi.enable {
   services.akkoma = {
     enable = true;
@@ -106,6 +108,8 @@ in mkIf conf.fedi.enable {
       "emoji/neocat" = neocat;
       "emoji/neofox" = neofox;
       "emoji/blobfox" = blobfox;
+      "emoji/blobhaj" = blobhaj;
+      "emoji/blobhajFlags" = blobhajFlags;
     };
     nginx = {
       serverName = "fedi.twoneis.site";
