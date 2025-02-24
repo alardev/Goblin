@@ -2,6 +2,7 @@
   inherit (lib) mkIf;
   inherit (config) conf;
   inherit ((pkgs.formats.elixirConf { }).lib) mkMap;
+  neocat = (pkgs.callPackage ./neocat.nix { });
 in mkIf conf.fedi.enable {
   services.akkoma = {
     enable = true;
@@ -98,6 +99,9 @@ in mkIf conf.fedi.enable {
           base_url = "https://fedi.twoneis.site/media/";
         };
       };
+    };
+    extraStatic = {
+      "emoji/neocat" = neocat;
     };
     nginx = {
       serverName = "fedi.twoneis.site";
