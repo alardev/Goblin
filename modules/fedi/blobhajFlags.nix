@@ -7,8 +7,6 @@ stdenvNoCC.mkDerivation {
 
   src = ./blobhajFlags;
 
-  sourceRoot = ".";
-
   installPhase = ''
     runHook preInstall
 
