@@ -1,23 +1,11 @@
 {
   stdenvNoCC,
-  fetchurl,
-  unzip,
-}: let
-  day = "13";
-  month = "12";
-  year = "2022";
-in stdenvNoCC.mkDerivation rec {
+}:
+stdenvNoCC.mkDerivation {
   pname = "blobhaj";
-  version = "${month}-${day}-${year}";
+  version = "13.12.2022";
 
-  src = fetchurl {
-    url = "https://heatherhorns.com/wp-content/uploads/${year}/${month}/Blobhaj-${version}.zip";
-    hash = "";
-  };
-
-  sourceRoot = ".";
-
-  nativeBuildInputs = [ unzip ];
+  src = ./blobhaj;
 
   installPhase = ''
     runHook preInstall
