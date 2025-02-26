@@ -30,6 +30,7 @@ in mkIf conf.nginx.enable {
 
   services.nginx = {
     enable = true;
+    recommendedProxySettings = true;
     virtualHosts = {
       "chpu.eu" = {
         serverName = "chpu.eu";
