@@ -2,20 +2,39 @@
   inherit (config) conf;
   inherit (lib) mkIf;
 in mkIf conf.mail.enable {
-  services.nginx = {
-    virtualHosts = {
-      "webadmin.chpu.eu" = {
-        useACMEHost = "chpu.eu";
-        forceSSL = true;
-        serverAliases = [
-          "mta-sts.chpu.eu"
-          "autoconfig.chpu.eu"
-          "autodiscover.chpu.eu"
-        ];
-        locations."/".proxyPass = "http://localhost:9090";
-      };
-    };
-  };
+  services.nginx.streamConfig = ''
+    # Proxy SMTP
+    server {
+      server_name chpu.eu mail.chpu.eu;
+      listen 25 proxy_protocol;
+      proxy_pass 127.0.0.1:10025;
+      proxy_protocol on;
+    }
+
+    # Proxy IMAPS
+    server {
+      server_name chpu.eu mail.chpu.eu;
+      listen 993 proxy_protocol;
+      proxy_pass 127.0.0.1:10993;
+      proxy_protocol on;
+    }
+
+    # Proxy SMTPS
+    server {
+      server_name chpu.eu mail.chpu.eu;
+      listen 465 proxy_protocol;
+      proxy_pass 127.0.0.1:10465;
+      proxy_protocol on;
+    }
+
+    # Proxy HTTPS
+    server {
+      server_name chpu.eu mail.chpu.eu;
+      listen 443 proxy_protocol;
+      proxy_pass 127.0.0.1:10443;
+      proxy_protocol on;
+    }
+  '';
 
   users.users."stalwart-mail".extraGroups = [ "nginx" ];
 
@@ -34,27 +53,27 @@ in mkIf conf.mail.enable {
           enable = true;
           implicit = true;
         };
+        proxy.trusted-networks = [
+          "127.0.0.0/8"
+          "::1"
+          "10.0.0.0/8"
+        ];
         listener = {
           submissions = {
             protocol = "smtp";
-            bind = "[::]:465";
+            bind = "127.0.0.1:10465";
           };
           smtp = {
             protocol = "smtp";
-            bind = "[::]:25";
+            bind = "127.0.0.1:10025";
           };
           imaps = {
             protocol = "imap";
-            bind = "[::]:993";
-          };
-          jmap = {
-            protocol = "http";
-            bind = "[::]:8080";
-            url = "https://mail.chpu.eu";
+            bind = "127.0.0.1:10993";
           };
           management = {
             protocol = "http";
-            bind = [ "127.0.0.1:9090" ];
+            bind = [ "127.0.0.1:10443" ];
           };
         };
       };
