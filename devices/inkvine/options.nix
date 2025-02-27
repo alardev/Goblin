@@ -5,7 +5,7 @@
     extraLayout.enable = true;
     fonts.enable = true;
     secureboot.enable = true;
-    vm.enable = true;
+    containers.enable = true;
     networkmanager.enable = true;
 
     stateVersion = "24.11";
