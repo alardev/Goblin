@@ -1,6 +1,4 @@
-{
-  stdenvNoCC,
-}:
+{stdenvNoCC}:
 stdenvNoCC.mkDerivation {
   pname = "blobhajFlags";
   version = "1.0";

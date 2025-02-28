@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }: let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf mkForce;
   inherit (config) conf;
 in {
@@ -45,7 +50,7 @@ in {
     # Regularly clean download folder
     systemd = {
       timers."clean-download" = {
-        wantedBy = [ "timers.target" ];
+        wantedBy = ["timers.target"];
         timerConfig = {
           OnCalendar = "*-*-* 03:00:00";
           Unit = "clean-download.service";

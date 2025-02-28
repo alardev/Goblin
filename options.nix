@@ -1,4 +1,4 @@
-{ lib, ... }: let
+{lib, ...}: let
   inherit (lib) mkOption mkEnableOption;
   inherit (lib.types) nullOr attrsOf str;
 in {
@@ -48,7 +48,7 @@ in {
 
       keys = mkOption {
         type = attrsOf str;
-        description =- "Default key binds.";
+        description = - "Default key binds.";
         default = {
           up = "t";
           down = "n";
@@ -68,7 +68,7 @@ in {
       disks = mkOption {
         type = attrsOf str;
         description = "A set of UUIDs of the partitions/lvms/... that can be used easily reused in the config. In this config boot and root are assumed to be always present.";
-        default = { };
+        default = {};
         example = {
           boot = "4672-C1A9";
           crypt = "747ae319-f189-44f5-9737-a42672e2c02d";

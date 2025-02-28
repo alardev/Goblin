@@ -1,4 +1,4 @@
-{ config, ... }: let
+{config, ...}: let
   base = config.theme.base;
   surface = config.theme.surface;
   text = config.theme.text;

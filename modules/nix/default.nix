@@ -1,4 +1,8 @@
-{ inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   nix = {
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     gc = {
@@ -7,7 +11,7 @@
       options = "--delete-older-than 14d";
     };
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
     };
   };
@@ -22,4 +26,5 @@
       allowUnfree = true;
     };
   };
+  environment.systemPackages = [inputs.alejandra.defaultPackage.${pkgs.system}];
 }

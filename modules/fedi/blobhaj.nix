@@ -1,6 +1,4 @@
-{
-  stdenvNoCC,
-}:
+{stdenvNoCC}:
 stdenvNoCC.mkDerivation {
   pname = "blobhaj";
   version = "13.12.2022";

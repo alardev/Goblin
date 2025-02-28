@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   conf = {
     ssh.enable = true;
     nginx.enable = true;

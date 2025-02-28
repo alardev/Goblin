@@ -1,4 +1,4 @@
-{ config, ... }: let
+{config, ...}: let
   inherit (config) conf;
 in {
   imports = [
@@ -31,10 +31,10 @@ in {
     defaultLocale = "en_US.UTF-8";
   };
 
-  users.users.${conf.username}= {
+  users.users.${conf.username} = {
     isNormalUser = true;
     description = conf.username;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
   };
 
   system.stateVersion = conf.stateVersion;

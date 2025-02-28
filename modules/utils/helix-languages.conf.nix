@@ -6,6 +6,10 @@
   };
 
   language = [{
+    name = "nix";
+    auto-format = true;
+    formatter.command = "alejandra";
+  } {
     name = "gas";
     scope = "source.gas";
     auto-format = false;

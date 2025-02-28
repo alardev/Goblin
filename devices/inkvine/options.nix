@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   conf = {
     apps.enable = true;
     niri.enable = true;

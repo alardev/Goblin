@@ -1,6 +1,6 @@
-{ config, ... }: let
+{config, ...}: let
   inherit (config) conf;
-in{
+in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;

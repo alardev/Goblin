@@ -1,11 +1,19 @@
-{ nixpkgs,  home-manager, nixos-hardware, disko, niri, lanzaboote, ... }@inputs: let
+{
+  nixpkgs,
+  home-manager,
+  nixos-hardware,
+  disko,
+  niri,
+  lanzaboote,
+  ...
+} @ inputs: let
   modules = [
-      ./options.nix
-      ./modules
-      niri.nixosModules.niri
-      home-manager.nixosModules.home-manager
-      lanzaboote.nixosModules.lanzaboote
-      disko.nixosModules.disko
+    ./options.nix
+    ./modules
+    niri.nixosModules.niri
+    home-manager.nixosModules.home-manager
+    lanzaboote.nixosModules.lanzaboote
+    disko.nixosModules.disko
   ];
 in {
   nixosConfigurations = {
@@ -18,10 +26,12 @@ in {
       specialArgs = {
         inherit inputs;
       };
-      modules = [
-        ./devices/inkvine
-        nixos-hardware.nixosModules.framework-13-7040-amd
-      ] ++ modules;
+      modules =
+        [
+          ./devices/inkvine
+          nixos-hardware.nixosModules.framework-13-7040-amd
+        ]
+        ++ modules;
     };
 
     ellaca = nixpkgs.lib.nixosSystem {
@@ -29,9 +39,11 @@ in {
       specialArgs = {
         inherit inputs;
       };
-      modules = [
-        ./devices/ellaca
-      ] ++ modules;
+      modules =
+        [
+          ./devices/ellaca
+        ]
+        ++ modules;
     };
   };
 }

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (config) conf;
   inherit (config.conf) keys;
   inherit (lib.strings) concatMapStrings;
@@ -54,9 +59,9 @@ in {
     programs.helix = {
       enable = true;
       defaultEditor = true;
-      extraPackages = with pkgs; [ nil marksman ];
-      settings = import ./helix.conf.nix { config = config; };
-      languages = import ./helix-languages.conf.nix { };
+      extraPackages = with pkgs; [nil marksman];
+      settings = import ./helix.conf.nix {config = config;};
+      languages = import ./helix-languages.conf.nix {};
     };
 
     programs.direnv = {
@@ -71,14 +76,20 @@ in {
 
     programs.hyfetch = {
       enable = true;
-      settings = import ./hyfetch.conf.nix { };
+      settings = import ./hyfetch.conf.nix {};
     };
 
     programs.fish = {
       enable = true;
       plugins = with pkgs.fishPlugins; [
-        { name = "pure"; src = pure.src; }
-        { name = "bass"; src = bass.src; }
+        {
+          name = "pure";
+          src = pure.src;
+        }
+        {
+          name = "bass";
+          src = bass.src;
+        }
       ];
       interactiveShellInit = concatMapStrings (x: "set --universal " + x + "\n") [
         "pure_enable_nixdevshell true"

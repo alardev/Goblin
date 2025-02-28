@@ -1,4 +1,4 @@
-{ config, ... }: let
+{config, ...}: let
   inherit (config) theme;
 in {
   # Rose Pine

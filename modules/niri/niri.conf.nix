@@ -1,53 +1,60 @@
-{ lib, config, ... }: let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (config.conf) keys extraLayout;
   inherit (lib.attrsets) genAttrs;
   inherit (lib) mkMerge;
 in {
   input = {
-      keyboard = { 
-          xkb = {
-            layout = if extraLayout.enable then "custom,us" else "us";
-            options = "compose:ralt";
-          };
+    keyboard = {
+      xkb = {
+        layout =
+          if extraLayout.enable
+          then "custom,us"
+          else "us";
+        options = "compose:ralt";
       };
-      touchpad = {
-          tap = true;
-          natural-scroll = true;
-          dwt = true;
-      };
-      power-key-handling.enable = false;
+    };
+    touchpad = {
+      tap = true;
+      natural-scroll = true;
+      dwt = true;
+    };
+    power-key-handling.enable = false;
   };
 
   outputs = mkMerge [
     {
       # Framework builtin Display
       "BOE 0x0BCA Unknown" = {
-          scale = 1;
-          mode = {
-            width = 2256;
-            height = 1504;
-            refresh = 59.999;
-          };
-          position = {
-            x = 0;
-            y = 0;
-          };
-          background-color = config.theme.base;
+        scale = 1;
+        mode = {
+          width = 2256;
+          height = 1504;
+          refresh = 59.999;
+        };
+        position = {
+          x = 0;
+          y = 0;
+        };
+        background-color = config.theme.base;
       };
 
       # Home Monitor
-      "Microstep MSI PS341WU 0000000000000"  = {
-          scale = 1;
-          mode = {
-            width = 5120;
-            height = 2160;
-            refresh = 59.940;
-          };
-          position = {
-            x = -1280;
-            y = -2160;
-          };
-          background-color = config.theme.base;
+      "Microstep MSI PS341WU 0000000000000" = {
+        scale = 1;
+        mode = {
+          width = 5120;
+          height = 2160;
+          refresh = 59.940;
+        };
+        position = {
+          x = -1280;
+          y = -2160;
+        };
+        background-color = config.theme.base;
       };
 
       # Uni Monitors
@@ -76,29 +83,29 @@ in {
   ];
 
   layout = {
-      focus-ring = {
-          width = 2;
-          active.gradient = {
-            to = config.theme.rose;
-            from = config.theme.pine;
-            in' = "oklch shorter hue";
-            angle=135;
-          };
-          inactive.color = config.theme.iris;
+    focus-ring = {
+      width = 2;
+      active.gradient = {
+        to = config.theme.rose;
+        from = config.theme.pine;
+        in' = "oklch shorter hue";
+        angle = 135;
       };
+      inactive.color = config.theme.iris;
+    };
 
-      preset-column-widths = [
-        { proportion = 0.25; }
-        { proportion = 0.5; }
-        { proportion = 0.75; }
-      ];
+    preset-column-widths = [
+      {proportion = 0.25;}
+      {proportion = 0.5;}
+      {proportion = 0.75;}
+    ];
 
-      default-column-width = { };
+    default-column-width = {};
 
-      gaps = 4;
-      struts = {
-        top = 2;
-      };
+    gaps = 4;
+    struts = {
+      top = 2;
+    };
   };
 
   window-rules = [
@@ -107,7 +114,7 @@ in {
         top-left = 8.0;
         top-right = 8.0;
         bottom-left = 8.0;
-        bottom-right= 8.0;
+        bottom-right = 8.0;
       };
       clip-to-geometry = true;
     }
@@ -120,8 +127,8 @@ in {
   hotkey-overlay.skip-at-startup = true;
 
   spawn-at-startup = [
-    { command = [ "waybar" ]; }
-    { command = [ "swayidle" "-w" "before-sleep" "swaylock" ]; }
+    {command = ["waybar"];}
+    {command = ["swayidle" "-w" "before-sleep" "swaylock"];}
   ];
 
   binds = {
@@ -130,31 +137,47 @@ in {
     "Mod+B".action.spawn = "firefox";
     "Mod+Space".action.spawn = "fuzzel";
 
-    "XF86AudioRaiseVolume".action.spawn = [ 
-      "swayosd-client" "--output-volume" "raise"
+    "XF86AudioRaiseVolume".action.spawn = [
+      "swayosd-client"
+      "--output-volume"
+      "raise"
     ];
     "XF86AudioLowerVolume".action.spawn = [
-      "swayosd-client" "--output-volume" "lower"
+      "swayosd-client"
+      "--output-volume"
+      "lower"
     ];
     "XF86AudioMute".action.spawn = [
-      "swayosd-client" "--output-volume" "mute-toggle"
+      "swayosd-client"
+      "--output-volume"
+      "mute-toggle"
     ];
 
-    "Mod+XF86AudioRaiseVolume".action.spawn = [ 
-      "swayosd-client" "--input-volume" "raise"
+    "Mod+XF86AudioRaiseVolume".action.spawn = [
+      "swayosd-client"
+      "--input-volume"
+      "raise"
     ];
     "Mod+XF86AudioLowerVolume".action.spawn = [
-      "swayosd-client" "--input-volume" "lower"
+      "swayosd-client"
+      "--input-volume"
+      "lower"
     ];
     "Mod+XF86AudioMute".action.spawn = [
-      "swayosd-client" "--output-volume" "mute-toggle"
+      "swayosd-client"
+      "--output-volume"
+      "mute-toggle"
     ];
 
     "XF86MonBrightnessDown".action.spawn = [
-      "swayosd-client" "--brightness" "lower"
+      "swayosd-client"
+      "--brightness"
+      "lower"
     ];
     "XF86MonBrightnessUp".action.spawn = [
-      "swayosd-client" "--brightness" "raise"
+      "swayosd-client"
+      "--brightness"
+      "raise"
     ];
 
     "Mod+Backspace".action.close-window = [];

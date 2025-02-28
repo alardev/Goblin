@@ -1,4 +1,8 @@
-{ lib, config, ... }: let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib.strings) concatStrings;
   inherit (config) theme;
 in {
@@ -16,11 +20,11 @@ in {
   indicator-radius = 100;
   indicator-thickness = 4;
 
-  inside-color = concatStrings [ theme.overlay "aa" ];
-  inside-clear-color = concatStrings [ theme.subtle "aa" ];
-  inside-caps-lock-color = concatStrings [ theme.rose "aa" ];
-  inside-ver-color = concatStrings [ theme.foam "aa" ];
-  inside-wrong-color = concatStrings [ theme.love "aa" ];
+  inside-color = concatStrings [theme.overlay "aa"];
+  inside-clear-color = concatStrings [theme.subtle "aa"];
+  inside-caps-lock-color = concatStrings [theme.rose "aa"];
+  inside-ver-color = concatStrings [theme.foam "aa"];
+  inside-wrong-color = concatStrings [theme.love "aa"];
   line-uses-inside = true;
 
   ring-color = theme.surface;
@@ -36,8 +40,8 @@ in {
   caps-lock-key-hl-color = theme.iris;
   caps-lock-bs-hl-color = theme.love;
 
-  layout-bg-color = concatStrings [ theme.overlay "aa" ];
-  layout-border-color = concatStrings [ theme.overlay "aa" ];
+  layout-bg-color = concatStrings [theme.overlay "aa"];
+  layout-border-color = concatStrings [theme.overlay "aa"];
   layout-text-color = theme.text;
 
   text-color = theme.text;

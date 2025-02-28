@@ -1,8 +1,14 @@
-{ lib, config, pkgs, ... }: let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (config) conf;
-  swayosd-style = pkgs.writeText "swayosd.css" 
-    (import ./swayosd.css.nix { config = config; }).style;
+  swayosd-style =
+    pkgs.writeText "swayosd.css"
+    (import ./swayosd.css.nix {config = config;}).style;
 in {
   config = mkIf conf.niri.enable {
     environment.sessionVariables = {
@@ -10,12 +16,12 @@ in {
     };
 
     environment.systemPackages = [
-      (pkgs.catppuccin-sddm.override ({
+      (pkgs.catppuccin-sddm.override {
         flavor = "mocha";
         font = "Fira Code Nerd Font";
         background = "${./sddm.wallpaper.png}";
         loginBackground = true;
-      }))
+      })
     ];
 
     services.displayManager.sddm = {
@@ -51,30 +57,39 @@ in {
       services.swayosd = {
         enable = true;
         topMargin = 0.8;
-        stylePath = swayosd-style; 
+        stylePath = swayosd-style;
       };
 
       programs.niri = {
-        settings = import ./niri.conf.nix { lib = lib; config = config; };
+        settings = import ./niri.conf.nix {
+          lib = lib;
+          config = config;
+        };
       };
 
-      programs.fuzzel= {
+      programs.fuzzel = {
         enable = true;
-        settings = import ./fuzzel.conf.nix { lib = lib; config = config; };
+        settings = import ./fuzzel.conf.nix {
+          lib = lib;
+          config = config;
+        };
       };
 
       programs.waybar = {
         enable = true;
-        settings = import ./waybar.conf.nix { };
-        style = (import ./waybar.css.nix { config = config; }).style;
+        settings = import ./waybar.conf.nix {};
+        style = (import ./waybar.css.nix {config = config;}).style;
       };
 
       programs.swaylock = {
         enable = true;
-        package = (pkgs.swaylock-effects.overrideAttrs (final: prev: {
-          buildInputs = prev.buildInputs ++ [ pkgs.wayland-scanner ];
-        }));
-        settings = import ./swaylock.conf.nix { lib = lib; config = config; };
+        package = pkgs.swaylock-effects.overrideAttrs (final: prev: {
+          buildInputs = prev.buildInputs ++ [pkgs.wayland-scanner];
+        });
+        settings = import ./swaylock.conf.nix {
+          lib = lib;
+          config = config;
+        };
       };
 
       services.mako = {

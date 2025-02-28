@@ -1,4 +1,4 @@
-{ config, ... }: let
+{config, ...}: let
   inherit (config.conf) keys;
 in {
   theme = "rose_pine";
@@ -15,12 +15,12 @@ in {
       display-inlay-hints = true;
     };
 
-    gutters = [ "diagnostics" "line-numbers" "diff" ];
+    gutters = ["diagnostics" "line-numbers" "diff"];
 
     statusline = {
-      left = [ "mode" "spinner" "version-control" ];
-      center = [ "file-modification-indicator" "read-only-indicator" "file-name" ];
-      right = [ "diagnostics" "position" ];
+      left = ["mode" "spinner" "version-control"];
+      center = ["file-modification-indicator" "read-only-indicator" "file-name"];
+      right = ["diagnostics" "position"];
     };
 
     cursor-shape = {
@@ -30,7 +30,7 @@ in {
     };
   };
 
-  keys.normal  = {
+  keys.normal = {
     ${keys.up} = "move_line_up";
     ${keys.down} = "move_line_down";
     ${keys.left} = "move_char_left";
