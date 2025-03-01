@@ -14,13 +14,12 @@
   blobhaj = pkgs.callPackage ./blobhaj.nix {};
   blobhajFlags = pkgs.callPackage ./blobhajFlags.nix {};
   favicon = pkgs.callPackage ./favicon.nix {};
-  rosepine = pkgs.writeText "rosepine.json" ./rosepine.json;
 in
   mkIf conf.fedi.enable {
     services.akkoma = {
       enable = true;
       frontends.primary = {
-        name = "akkoma-fe";
+        name = "akkoma_fe";
         ref = "stable";
         package = akkoma-fe;
       };
@@ -35,7 +34,8 @@ in
 
           ":frontend_configurations" = {
             "akkoma_fe" = {
-              loog = "/static/favicon.png";
+              theme = "rosepine";
+              logo = "/static/logo.png";
             };
           };
 
@@ -132,7 +132,7 @@ in
         "emoji/blobhajFlags" = blobhajFlags;
 
         "static/favicon.png" = favicon;
-        "static/themes/rosepine" = rosepine;
+        "static/logo.png" = favicon;
         "favicon.png" = favicon;
       };
       nginx = {

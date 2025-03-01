@@ -1,6 +1,7 @@
 {
   "_pleroma_theme_version": 2,
-  "theme": {
+  "name": "rosepine",
+  "source": {
     "themeEngineVersion": 3,
     "shadows": {
       "panel": [
