@@ -11,6 +11,7 @@ in
       virtualHosts."chpu.eu" = {
         serverName = "chpu.eu";
         serverAliases = [
+          "mail.chpu.eu"
           "webadmin.chpu.eu"
           "autoconfig.chpu.eu"
           "autodiscover.chpu.eu"
@@ -23,34 +24,13 @@ in
           };
         };
       };
-      streamConfig = ''
-        # Proxy SMTP
-        server {
-            listen 25 proxy_protocol;
-            proxy_pass 127.0.0.1:10025;
-            proxy_protocol on;
-        }
-
-        # Proxy IMAPS
-        server {
-            listen 993 proxy_protocol;
-            proxy_pass 127.0.0.1:10993;
-            proxy_protocol on;
-        }
-
-        # Proxy SMTPS
-        server {
-            listen 465 proxy_protocol;
-            proxy_pass 127.0.0.1:10465;
-            proxy_protocol on;
-        }
-      '';
     };
 
     users.users."stalwart-mail".extraGroups = ["nginx"];
 
     services.stalwart-mail = {
       enable = true;
+      openFirewall = true;
       settings = {
         config.local-keys = [
           "certificate.default.cert"
@@ -59,23 +39,22 @@ in
         ];
         server = {
           hostname = "chpu.eu";
-          proxy.trusted-networks = ["127.0.0.0/8" "::1" "10.0.0.0/8"];
           tls = {
             enable = true;
             implicit = true;
           };
           listener = {
-            submissions = {
-              protocol = "smtp";
-              bind = "[::]:465";
-            };
             smtp = {
               protocol = "smtp";
-              bind = "[::]:25";
+              bind = ["[::]:25"];
             };
             imaps = {
               protocol = "imap";
-              bind = "[::]:993";
+              bind = ["[::]:993"];
+            };
+            submissions = {
+              protocol = "smtp";
+              bind = ["[::]:465"];
             };
             management = {
               protocol = "http";
