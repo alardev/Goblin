@@ -12,6 +12,7 @@
   blobfox = pkgs.callPackage ./blobfox.nix {};
   blobhaj = pkgs.callPackage ./blobhaj.nix {};
   blobhajFlags = pkgs.callPackage ./blobhajFlags.nix {};
+  favicon = pkgs.callPackage ./favicon.nix {};
 in
   mkIf conf.fedi.enable {
     services.akkoma = {
@@ -23,6 +24,12 @@ in
             description = "miras akkoma instance";
             email = "fedi@chpu.eu";
             registration_open = false;
+          };
+
+          ":frontend_configurations" = {
+            "akkoma_fe" = {
+              loog = "/static/favicon.png";
+            };
           };
 
           # Initial block list copied from void.rehab
@@ -116,6 +123,9 @@ in
         "emoji/blobfox" = blobfox;
         "emoji/blobhaj" = blobhaj;
         "emoji/blobhajFlags" = blobhajFlags;
+
+        "static/favicon.png" = favicon;
+        "favicon.png" = favicon;
       };
       nginx = {
         serverName = "fedi.twoneis.site";
