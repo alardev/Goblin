@@ -23,6 +23,28 @@ in
           };
         };
       };
+      streamConfig = ''
+        # Proxy SMTP
+        server {
+            listen 25 proxy_protocol;
+            proxy_pass 127.0.0.1:10025;
+            proxy_protocol on;
+        }
+
+        # Proxy IMAPS
+        server {
+            listen 993 proxy_protocol;
+            proxy_pass 127.0.0.1:10993;
+            proxy_protocol on;
+        }
+
+        # Proxy SMTPS
+        server {
+            listen 465 proxy_protocol;
+            proxy_pass 127.0.0.1:10465;
+            proxy_protocol on;
+        }
+      '';
     };
 
     users.users."stalwart-mail".extraGroups = ["nginx"];
@@ -37,6 +59,7 @@ in
         ];
         server = {
           hostname = "chpu.eu";
+          proxy.trusted-networks = ["127.0.0.0/8" "::1" "10.0.0.0/8"];
           tls = {
             enable = true;
             implicit = true;
