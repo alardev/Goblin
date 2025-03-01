@@ -14,6 +14,7 @@
   blobhaj = pkgs.callPackage ./blobhaj.nix {};
   blobhajFlags = pkgs.callPackage ./blobhajFlags.nix {};
   favicon = pkgs.callPackage ./favicon.nix {};
+  rosepine = pkgs.writeText "rosepine.json" ./rosepine.json;
 in
   mkIf conf.fedi.enable {
     services.akkoma = {
@@ -131,6 +132,7 @@ in
         "emoji/blobhajFlags" = blobhajFlags;
 
         "static/favicon.png" = favicon;
+        "static/themes/rosepine" = rosepine;
         "favicon.png" = favicon;
       };
       nginx = {
