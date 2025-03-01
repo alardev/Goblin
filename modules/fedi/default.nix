@@ -18,7 +18,11 @@ in
   mkIf conf.fedi.enable {
     services.akkoma = {
       enable = true;
-      frontends.primary.package = akkoma-fe;
+      frontends.primary = {
+        name = "akkoma-fe";
+        ref = "stable";
+        package = akkoma-fe;
+      };
       config = {
         ":pleroma" = {
           ":instance" = {

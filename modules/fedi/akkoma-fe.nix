@@ -13,5 +13,5 @@ runCommand "akkoma-fe" {
   lndir ${akkoma-frontends.akkoma-fe} $out
 
   rm $out/static/styles.json
-  cp $config $out/static/styles.json
+  cp ${styles} $out/static/
 ''
