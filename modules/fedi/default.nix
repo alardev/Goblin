@@ -7,6 +7,7 @@
   inherit (lib) mkIf;
   inherit (config) conf;
   inherit ((pkgs.formats.elixirConf {}).lib) mkMap;
+  akkoma-fe = pkgs.callPackage ./akkoma-fe.nix {};
   neocat = pkgs.callPackage ./neocat.nix {};
   neofox = pkgs.callPackage ./neofox.nix {};
   blobfox = pkgs.callPackage ./blobfox.nix {};
@@ -17,6 +18,7 @@ in
   mkIf conf.fedi.enable {
     services.akkoma = {
       enable = true;
+      frontends.primary.package = akkoma-fe;
       config = {
         ":pleroma" = {
           ":instance" = {
