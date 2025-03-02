@@ -28,7 +28,7 @@ in
           ":instance" = {
             name = "miras fedi";
             description = "miras akkoma instance";
-            email = "fedi@chpu.eu";
+            email = "akkoma@chpu.eu";
             registration_open = false;
           };
 
