@@ -13,7 +13,7 @@
 
   boot = {
     initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod"];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest_hardened;
     loader = {
       grub = {
         devices = ["/dev/sda"];
