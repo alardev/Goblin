@@ -16,7 +16,11 @@ in
           extraConfig = ''
             client_max_body_size 512M;
           '';
-          locations."/".proxyPass = "http://localhost:${toString cfg.HTTP_PORT}";
+          locations = {
+            "/" = {
+              proxyPass = "http://localhost:${toString cfg.HTTP_PORT}";
+            };
+          };
         };
       };
 

@@ -64,6 +64,7 @@ in
         "static/logo.png" = favicon;
         "favicon.png" = favicon;
       };
+
       nginx = {
         serverName = "fedi.twoneis.site";
         useACMEHost = "twoneis.site";

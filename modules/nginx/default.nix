@@ -9,14 +9,14 @@ in
   mkIf conf.nginx.enable {
     security.acme = {
       acceptTerms = true;
-      defaults.email = "mira.cp.0909@gmail.com";
+      defaults.email = "mira@chpu.eu";
       certs = {
         "twoneis.site" = {
           group = "nginx";
           domain = "twoneis.site";
           extraDomainNames = ["*.twoneis.site"];
           dnsProvider = "porkbun";
-          email = "mira.cp.0909@gmail.com";
+          email = "mira@chpu.eu";
           environmentFile = "/root/porkbun-creds";
         };
 
@@ -25,7 +25,7 @@ in
           domain = "chpu.eu";
           extraDomainNames = ["*.chpu.eu"];
           dnsProvider = "porkbun";
-          email = "mira.cp.0909@gmail.com";
+          email = "mira@chpu.eu";
           environmentFile = "/root/porkbun-creds";
         };
       };
@@ -36,6 +36,8 @@ in
     services.nginx = {
       enable = true;
       recommendedProxySettings = true;
+      recommendedOptimisation = true;
+      recommendedTlsSettings = true;
       virtualHosts = {
         "chpu.eu" = {
           serverName = "chpu.eu";
