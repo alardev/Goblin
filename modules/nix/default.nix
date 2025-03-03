@@ -22,9 +22,6 @@
       inputs.niri.overlays.niri
       inputs.nix-alien.overlays.default
     ];
-    config = {
-      allowUnfree = true;
-    };
   };
   environment.systemPackages = [inputs.alejandra.defaultPackage.${pkgs.system}];
 }
