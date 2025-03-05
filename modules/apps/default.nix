@@ -29,9 +29,9 @@ in {
     };
 
     # Run statically linked and more
-    # environment.systemPackages = with pkgs; [
-    #   nix-alien
-    # ];
+    environment.systemPackages = with pkgs; [
+      nix-alien
+    ];
 
     programs.nix-ld.enable = true;
 
