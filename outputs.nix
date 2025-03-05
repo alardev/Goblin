@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  lix,
   home-manager,
   nixos-hardware,
   disko,
@@ -10,6 +11,7 @@
   modules = [
     ./options.nix
     ./modules
+    lix.nixosModules.default
     niri.nixosModules.niri
     home-manager.nixosModules.home-manager
     lanzaboote.nixosModules.lanzaboote
