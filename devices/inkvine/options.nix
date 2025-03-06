@@ -7,6 +7,7 @@
     secureboot.enable = true;
     containers.enable = true;
     networkmanager.enable = true;
+    yubikey.enable = true;
 
     stateVersion = "24.11";
     hmStateVersion = "24.11";
