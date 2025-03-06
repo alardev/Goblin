@@ -14,6 +14,7 @@ in {
       extraLayout.enable = mkEnableOption "Enable additional custom layout.";
       fonts.enable = mkEnableOption "Install and set preferred fonts";
       networkmanager.enable = mkEnableOption "Enable network manager and some related configuration";
+      yubikey.enable = mkEnableOption "Enable support for yubikey";
 
       # Generally server options
       ssh.enable = mkEnableOption "Install my public key to allow accessing this machine via ssh.";

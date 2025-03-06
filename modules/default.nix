@@ -22,6 +22,7 @@ in {
     ./utils
     ./vm
     ./website
+    ./yubikey
   ];
 
   documentation.nixos.enable = false;
