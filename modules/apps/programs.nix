@@ -38,6 +38,7 @@ in
           peaclock
           fractal
           element-desktop
+          papers
         ]
         ++ [
           time
