@@ -64,6 +64,7 @@ in {
         settings = import ./niri.conf.nix {
           lib = lib;
           config = config;
+          pkgs = pkgs;
         };
       };
 
@@ -90,6 +91,22 @@ in {
           lib = lib;
           config = config;
         };
+      };
+
+      services.swayidle = let
+        lockCmd = "${config.home-manager.users.${conf.username}.programs.swaylock.package}/bin/swaylock";
+      in {
+        enable = true;
+        events = [
+          {
+            event = "lock";
+            command = lockCmd;
+          }
+          {
+            event = "before-sleep";
+            command = lockCmd;
+          }
+        ];
       };
 
       services.mako = {

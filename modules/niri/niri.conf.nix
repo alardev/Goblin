@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   inherit (config.conf) keys extraLayout;
@@ -128,7 +129,6 @@ in {
 
   spawn-at-startup = [
     {command = ["waybar"];}
-    {command = ["swayidle" "-w" "before-sleep" "swaylock"];}
   ];
 
   binds = {
@@ -258,7 +258,7 @@ in {
     "Print".action.screenshot-screen = [];
 
     # Exit
-    "Mod+Shift+L".action.spawn = "swaylock";
+    "Mod+Shift+L".action.spawn = ["${pkgs.systemd}/bin/loginctl" "lock-session"];
     "Mod+Shift+Q".action.quit = [];
   };
 }
