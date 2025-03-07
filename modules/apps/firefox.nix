@@ -184,7 +184,8 @@ in
               "browser.shell.checkDefaultBrowser" = false;
               "browser.startup.blankWindow" = true;
               "browser.startup.page" = 3;
-              "browser.tabs.closeWindowWithLastTab" = false;
+              "browser.tabs.closeWindowWithLastTab" = true;
+              "browser.tabs.opentabfor.middleclick" = false;
               "browser.toolbars.bookmarks.visibility" = "never";
               "browser.translation.enable" = false;
               "dom.security.https_only_mode" = true;
@@ -196,6 +197,7 @@ in
               "medai.ffmpeg.vaapi.enabled" = true;
               "media.videocontrols.picture-in-picture.enabled" = false;
               "signon.rememberSignons" = false;
+              "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             };
 
             extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -208,6 +210,10 @@ in
               firefox-color
               purpleadblock
             ];
+
+            userChrome = ''
+              #TabsToolbar-customization-target { visibility: collapse !important; }
+            '';
           };
         };
       };
