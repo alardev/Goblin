@@ -4,19 +4,31 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkMerge mkIf;
   inherit (config) conf;
 in
-  mkIf conf.yubikey.enable {
-    services.udev.packages = [pkgs.yubikey-personalization];
-    services.pcscd.enable = true;
+  mkMerge [
+    (mkIf
+      conf.yubikey.enable
+      {
+        services.udev.packages = [pkgs.yubikey-personalization];
+        services.pcscd.enable = true;
 
-    programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
+        programs.gnupg.agent = {
+          enable = true;
+          enableSSHSupport = true;
+        };
 
-    home-manager.users.${conf.username}.home.packages = with pkgs; [
-      yubioath-flutter
-    ];
-  }
+        home-manager.users.${conf.username}.home.packages = with pkgs; [
+          yubioath-flutter
+        ];
+      })
+    (mkIf
+      conf.yubikey.login
+      {
+        security.pam.services = {
+          login.u2fAuth = true;
+          sudo.u2fAuth = true;
+        };
+      })
+  ]

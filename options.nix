@@ -12,9 +12,12 @@ in {
       games.enable = mkEnableOption "Enable games.";
       secureboot.enable = mkEnableOption "Enable secure boot utilities (manual key-enrolling required).";
       extraLayout.enable = mkEnableOption "Enable additional custom layout.";
-      fonts.enable = mkEnableOption "Install and set preferred fonts";
-      networkmanager.enable = mkEnableOption "Enable network manager and some related configuration";
-      yubikey.enable = mkEnableOption "Enable support for yubikey";
+      fonts.enable = mkEnableOption "Install and set preferred fonts.";
+      networkmanager.enable = mkEnableOption "Enable network manager and some related configuration.";
+      yubikey = {
+        enable = mkEnableOption "Enable support for yubikey.";
+        login = mkEnableOption "Enable login with yubikey, make sure ~/.config/Yubico/u2f_keys is set up.";
+      };
 
       # Generally server options
       ssh.enable = mkEnableOption "Install my public key to allow accessing this machine via ssh.";
