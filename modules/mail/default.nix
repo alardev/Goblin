@@ -41,7 +41,6 @@ in
           hostname = "chpu.eu";
           tls = {
             enable = true;
-            implicit = true;
           };
           listener = {
             smtp = {
