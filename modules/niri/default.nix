@@ -9,6 +9,7 @@
   swayosd-style =
     pkgs.writeText "swayosd.css"
     (import ./swayosd.css.nix {config = config;}).style;
+  niri = pkgs.niri-unstable;
 in {
   config = mkIf conf.niri.enable {
     environment.sessionVariables = {
@@ -24,16 +25,19 @@ in {
       })
     ];
 
-    services.displayManager.sddm = {
+    services.greetd = {
       enable = true;
-      wayland.enable = true;
-      theme = "catppuccin-mocha";
-      package = pkgs.kdePackages.sddm;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd ${niri}/bin/niri-session";
+          user = conf.username;
+        };
+      };
     };
 
     programs.niri = {
       enable = true;
-      package = pkgs.niri-unstable;
+      package = niri;
     };
 
     services.upower = {
@@ -61,6 +65,7 @@ in {
       };
 
       programs.niri = {
+        package = niri;
         settings = import ./niri.conf.nix {
           lib = lib;
           config = config;
