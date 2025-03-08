@@ -28,8 +28,10 @@ in
       {
         security.pam.u2f = {
           enable = true;
-          cue = true;
           control = "required";
+          settings = {
+            cue = true;
+          };
         };
 
         # Lock when removing yubikey
