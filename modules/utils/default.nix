@@ -17,10 +17,6 @@ in {
       man-pages-posix
       tree
       file
-      zip
-      unzip
-      gnutar
-      lshw
     ];
 
     home.file = {
@@ -94,6 +90,11 @@ in {
       interactiveShellInit = concatMapStrings (x: "set --universal " + x + "\n") [
         "pure_enable_nixdevshell true"
       ];
+
+      functions = {
+        run = "nix run nixpkgs#$argv[1] -- $argv[2..]";
+      };
+
       shellAbbrs = {
         ga = "git add";
         gc = "git commit";
