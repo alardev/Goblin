@@ -3,55 +3,35 @@
   lib,
   ...
 }: let
-  inherit (config) conf;
   inherit (lib) mkIf;
+  inherit (lib.attrsets) genAttrs;
+  cfg = config.conf.matrix;
 in
-  mkIf conf.matrix.enable {
-    services.nginx.virtualHosts = {
-      "twoneis.site" = {
-        serverName = "twoneis.site";
-        useACMEHost = "twoneis.site";
-        forceSSL = true;
-        locations = {
-          "/.well-known/matrix/server" = {
-            return = "200 '{\"m.server\": \"matrix.twoneis.site:443\"}'";
-          };
-          "/.well-known/matrix/client" = {
-            return = "200 '{\"m.homeserver\": {\"base_url\": \"https://matrix.twoneis.site\"}, \"org.matrix.msc3575.proxy\": {\"url\": \"https://matrix.twoneis.site\"}}'";
-          };
-          "/.well-known/matrix/support" = {
-            return = "200 '{\"contacts\": [{\"matrix_id\": \"@mira:twoneis.site\", \"email_address\": \"matrix@chpu.eu\", \"role\": \"m.role.admin\"}]}'";
-          };
+  mkIf cfg.enable {
+    services.nginx.virtualHosts = genAttrs [cfg.domain.base cfg.domain.full] (domain: {
+      serverName = domain;
+      useACMEHost = cfg.domain.base;
+      forceSSL = true;
+      locations = {
+        "/.well-known/matrix/server" = {
+          return = "200 '{\"m.server\": \"${cfg.domain.full}:443\"}'";
+        };
+        "/.well-known/matrix/client" = {
+          return = "200 '{\"m.homeserver\": {\"base_url\": \"https://${cfg.domain.full}\"}, \"org.matrix.msc3575.proxy\": {\"url\": \"https://${cfg.domain.full}\"}}'";
+        };
+        "/.well-known/matrix/support" = {
+          return = "200 '{\"contacts\": [{\"matrix_id\": \"@admin:${cfg.domain.full}\", \"email_address\": \"${cfg.email}\", \"role\": \"m.role.admin\"}]}'";
         };
       };
-      "matrix.twoneis.site" = {
-        serverName = "matrix.twoneis.site";
-        forceSSL = true;
-        useACMEHost = "twoneis.site";
-        locations = {
-          "/" = {
-            proxyPass = "http://localhost:6167";
-          };
-          "/.well-known/matrix/server" = {
-            return = "200 '{\"m.server\": \"matrix.twoneis.site:443\"}'";
-          };
-          "/.well-known/matrix/client" = {
-            return = "200 '{\"m.homeserver\": {\"base_url\": \"https://matrix.twoneis.site\"}, \"org.matrix.msc3575.proxy\": {\"url\": \"https://matrix.twoneis.site\"}}'";
-          };
-          "/.well-known/matrix/support" = {
-            return = "200 '{\"contacts\": [{\"matrix_id\": \"@mira:twoneis.site\", \"email_address\": \"matrix@chpu.eu\", \"role\": \"m.role.admin\"}]}'";
-          };
-        };
-      };
-    };
+    });
 
     services.conduwuit = {
       enable = true;
       settings.global = {
-        server_name = "matrix.twoneis.site";
+        server_name = cfg.domain.full;
         allow_registration = false;
       };
     };
 
-    networking.firewall.allowedTCPPorts = [443 8448];
+    networking.firewall.allowedTCPPorts = [8448];
   }

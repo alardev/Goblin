@@ -5,8 +5,9 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (config) conf;
   inherit ((pkgs.formats.elixirConf {}).lib) mkMap;
+  cfg = config.conf.fedi;
+
   akkoma-fe = pkgs.callPackage ./akkoma-fe.nix {};
   neocat = pkgs.callPackage ./neocat.nix {};
   neofox = pkgs.callPackage ./neofox.nix {};
@@ -15,7 +16,7 @@
   blobhajFlags = pkgs.callPackage ./blobhajFlags.nix {};
   favicon = pkgs.callPackage ./favicon.nix {};
 in
-  mkIf conf.fedi.enable {
+  mkIf cfg.enable {
     services.akkoma = {
       enable = true;
       frontends.primary = {
@@ -28,7 +29,7 @@ in
           ":instance" = {
             name = "miras fedi";
             description = "miras akkoma instance";
-            email = "akkoma@chpu.eu";
+            email = cfg.email;
             registration_open = false;
           };
 
@@ -45,11 +46,11 @@ in
           };
 
           "Pleroma.Web.Endpoint" = {
-            url.host = "fedi.twoneis.site";
+            url.host = cfg.domain.full;
           };
 
           "Pleroma.Upload" = {
-            base_url = "https://fedi.twoneis.site/media/";
+            base_url = "https://${cfg.domain.full}/media/";
           };
         };
       };
@@ -66,8 +67,8 @@ in
       };
 
       nginx = {
-        serverName = "fedi.twoneis.site";
-        useACMEHost = "twoneis.site";
+        serverName = cfg.domain.full;
+        useACMEHost = cfg.domain.base;
         forceSSL = true;
       };
     };

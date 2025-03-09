@@ -5,21 +5,13 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (config) conf;
+  inherit (config) conf theme;
+  cfg = config.conf.niri;
 in
-  mkIf conf.niri.enable {
+  mkIf cfg.enable {
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
     };
-
-    environment.systemPackages = [
-      (pkgs.catppuccin-sddm.override {
-        flavor = "mocha";
-        font = "Fira Code Nerd Font";
-        background = "${./sddm.wallpaper.png}";
-        loginBackground = true;
-      })
-    ];
 
     services.greetd = {
       enable = true;
@@ -115,9 +107,9 @@ in
         defaultTimeout = 5000;
         maxVisible = 3;
         font = "AlegreyaSans";
-        backgroundColor = config.theme.base;
-        borderColor = config.theme.muted;
-        textColor = config.theme.text;
+        backgroundColor = theme.base;
+        borderColor = theme.muted;
+        textColor = theme.text;
         borderSize = 1;
         borderRadius = 8;
         icons = false;

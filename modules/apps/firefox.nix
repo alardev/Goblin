@@ -7,7 +7,7 @@
   inherit (lib) mkIf;
   inherit (config) conf;
 in
-  mkIf conf.apps.enable {
+  mkIf (conf.host != "server") {
     home-manager.users.${conf.username} = {
       programs.firefox = {
         enable = true;

@@ -1,17 +1,14 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (config) conf;
+  cfg = config.conf.containers;
 in
-  mkIf conf.containers.enable {
+  mkIf cfg.enable {
     virtualisation.podman = {
       enable = true;
       dockerCompat = true;
     };
-
-    environment.systemPackages = [pkgs.distrobox];
   }

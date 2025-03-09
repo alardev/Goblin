@@ -4,6 +4,7 @@ in {
   imports = [
     ./apps
     ./containers
+    ./email
     ./fedi
     ./firewall
     ./fonts
@@ -11,7 +12,6 @@ in {
     ./git
     ./home
     ./layout
-    ./mail
     ./matrix
     ./networking
     ./nginx
@@ -35,7 +35,7 @@ in {
   users.users.${conf.username} = {
     isNormalUser = true;
     description = conf.username;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["wheel"];
   };
 
   system.stateVersion = conf.stateVersion;

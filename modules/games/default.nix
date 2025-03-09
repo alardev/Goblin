@@ -6,6 +6,7 @@
 }: let
   inherit (lib) mkIf;
   inherit (config) conf;
+  cfg = config.conf.games;
   mkXwlWrapper = import ../niri/xwl-wrapper.nix;
   holo-script = pkgs.writeShellApplication {
     name = "holo-script";
@@ -25,7 +26,7 @@
     pkg = "steam";
   };
 in
-  mkIf conf.games.enable {
+  mkIf cfg.enable {
     programs.steam.enable = true;
     programs.gamescope.enable = true;
     programs.gamemode.enable = true;

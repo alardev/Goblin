@@ -15,8 +15,6 @@ in {
     home.packages = with pkgs; [
       man-pages
       man-pages-posix
-      tree
-      file
     ];
 
     home.file = {
@@ -45,11 +43,6 @@ in {
         init.defaultBranch = "main";
         push.autoSetupRemote = true;
       };
-    };
-
-    programs.gh = {
-      enable = true;
-      gitCredentialHelper.enable = true;
     };
 
     programs.helix = {

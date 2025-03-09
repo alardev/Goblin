@@ -13,7 +13,7 @@
     exec = "alacritty -e ${pkgs.peaclock}/bin/peaclock";
   };
 in
-  mkIf conf.apps.enable {
+  mkIf (conf.host != "server") {
     services = {
       # Needed for some features in nautilus such as auto-mounting and trash
       gvfs.enable = true;

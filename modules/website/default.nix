@@ -4,14 +4,14 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (config) conf;
+  cfg = config.conf.website;
 in
-  mkIf conf.website.enable {
+  mkIf cfg.enable {
     services.nginx.virtualHosts = {
-      "twoneis.site" = {
+      ${cfg.domain.full} = {
         default = true;
-        serverName = "twoneis.site";
-        useACMEHost = "twoneis.site";
+        serverName = cfg.domain.full;
+        useACMEHost = cfg.domain.base;
         forceSSL = true;
         root = "/var/lib/website/";
       };

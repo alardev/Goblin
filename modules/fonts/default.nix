@@ -5,9 +5,9 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (config) conf;
+  cfg = config.conf.fonts;
 in
-  mkIf conf.fonts.enable {
+  mkIf cfg.enable {
     fonts = {
       packages = with pkgs; [
         alegreya

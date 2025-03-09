@@ -6,8 +6,9 @@
 }: let
   inherit (lib) mkIf;
   inherit (config) conf;
+  cfg = config.conf.vm;
 in
-  mkIf conf.vm.enable {
+  mkIf cfg.enable {
     virtualisation.libvirtd = {
       enable = true;
       qemu.vhostUserPackages = [pkgs.virtiofsd];

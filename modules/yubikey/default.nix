@@ -6,10 +6,11 @@
 }: let
   inherit (lib) mkMerge mkIf;
   inherit (config) conf;
+  cfg = config.conf.yubikey;
 in
   mkMerge [
     (mkIf
-      conf.yubikey.enable
+      cfg.enable
       {
         services.udev.packages = [pkgs.yubikey-personalization];
         services.pcscd.enable = true;
@@ -24,7 +25,7 @@ in
         ];
       })
     (mkIf
-      conf.yubikey.login
+      cfg.login
       {
         security.pam.u2f = {
           enable = true;

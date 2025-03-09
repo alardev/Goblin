@@ -3,24 +3,22 @@
   lib,
   ...
 }: let
-  inherit (config) conf;
   inherit (lib) mkIf;
+  inherit (lib.lists) forEach;
+  cfg = config.conf.email;
 in
-  mkIf conf.mail.enable {
+  mkIf cfg.enable {
     services.nginx = {
-      virtualHosts."chpu.eu" = {
-        serverName = "chpu.eu";
-        serverAliases = [
-          "mail.chpu.eu"
-          "webadmin.chpu.eu"
-          "autoconfig.chpu.eu"
-          "autodiscover.chpu.eu"
-        ];
+      virtualHosts.${cfg.domain} = {
+        serverName = cfg.domain;
+        serverAliases =
+          forEach ["mail" "webadmin" "autoconfig" "autodiscover"]
+          (sub: "${sub}.${cfg.domain}");
         forceSSL = true;
-        useACMEHost = "chpu.eu";
+        useACMEHost = cfg.domain;
         locations = {
           "/" = {
-            proxyPass = "http://localhost:9090";
+            proxyPass = "http://localhost:${toString cfg.ports.local}";
           };
         };
       };
@@ -38,7 +36,7 @@ in
           "authentication.fallback-admin.secret"
         ];
         server = {
-          hostname = "chpu.eu";
+          hostname = cfg.domain;
           tls = {
             enable = true;
             implicit = true;
@@ -46,30 +44,30 @@ in
           listener = {
             smtp = {
               protocol = "smtp";
-              bind = ["[::]:25"];
+              bind = ["[::]:${toString cfg.ports.smtp}"];
             };
             imaps = {
               protocol = "imap";
-              bind = ["[::]:993"];
+              bind = ["[::]:${toString cfg.ports.imaps}"];
             };
             submissions = {
               protocol = "smtp";
-              bind = ["[::]:465"];
+              bind = ["[::]:${toString cfg.ports.smtps}"];
             };
             management = {
               protocol = "http";
-              bind = "127.0.0.1:9090";
+              bind = "127.0.0.1:${toString cfg.ports.local}";
             };
           };
         };
         lookup.default = {
-          hostname = "chpu.eu";
-          domain = "chpu.eu";
+          hostname = cfg.domain;
+          domain = cfg.domain;
         };
         certificate.default = {
           default = true;
-          cert = "%{file:/var/lib/acme/chpu.eu/cert.pem}%";
-          private-key = "%{file:/var/lib/acme/chpu.eu/key.pem}%";
+          cert = "%{file:/var/lib/acme/${cfg.domain}/cert.pem}%";
+          private-key = "%{file:/var/lib/acme/${cfg.domain}/key.pem}%";
         };
         storage = {
           data = "db";

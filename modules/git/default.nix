@@ -4,21 +4,18 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (config) conf;
-  cfg = config.services.forgejo.settings.server;
+  cfg = config.conf.git;
 in
-  mkIf conf.git.enable {
+  mkIf cfg.enable {
     services = {
       nginx = {
-        virtualHosts.${cfg.DOMAIN} = {
+        virtualHosts.${cfg.domain.full} = {
+          serverName = cfg.domain.full;
+          useACMEHost = cfg.domain.base;
           forceSSL = true;
-          useACMEHost = "twoneis.site";
-          extraConfig = ''
-            client_max_body_size 512M;
-          '';
           locations = {
             "/" = {
-              proxyPass = "http://localhost:${toString cfg.HTTP_PORT}";
+              proxyPass = "http://localhost:${toString cfg.ports.local}";
             };
           };
         };
@@ -33,9 +30,9 @@ in
         lfs.enable = true;
         settings = {
           server = {
-            DOMAIN = "git.twoneis.site";
-            ROOT_URL = "https://${cfg.DOMAIN}";
-            HTTP_PORT = 3000;
+            DOMAIN = cfg.domain.full;
+            ROOT_URL = "https://${cfg.domain.full}";
+            HTTP_PORT = cfg.ports.local;
           };
           service.DISABLE_REGISTRATION = true;
           actions = {
