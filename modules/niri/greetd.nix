@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+pkgs: config: let
   inherit (config) conf;
   niri = config.programs.niri.package;
 in {

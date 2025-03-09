@@ -15,10 +15,7 @@ in
 
     services.greetd = {
       enable = true;
-      settings = import ./greetd.nix {
-        config = config;
-        pkgs = pkgs;
-      };
+      settings = import ./greetd.nix pkgs config;
     };
 
     programs.niri = {

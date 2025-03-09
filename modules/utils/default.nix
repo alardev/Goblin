@@ -70,22 +70,22 @@ in {
 
     programs.fish = {
       enable = true;
-      plugins = with pkgs.fishPlugins; [
+
+      plugins = [
         {
           name = "pure";
-          src = pure.src;
+          src = pkgs.fishPlugins.pure.src;
         }
-        {
-          name = "bass";
-          src = bass.src;
-        }
-      ];
-      interactiveShellInit = concatMapStrings (x: "set --universal " + x + "\n") [
-        "pure_enable_nixdevshell true"
       ];
 
       functions = {
-        run = "nix run nixpkgs#$argv[1] -- $argv[2..]";
+        run = {
+          body = "nix run nixpkgs#$argv[1] -- $argv[2..]";
+        };
+
+        fish_prompt = {
+          body = builtins.readFile ./prompt.fish;
+        };
       };
 
       shellAbbrs = {
