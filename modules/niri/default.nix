@@ -6,12 +6,8 @@
 }: let
   inherit (lib) mkIf;
   inherit (config) conf;
-  swayosd-style =
-    pkgs.writeText "swayosd.css"
-    (import ./swayosd.css.nix {config = config;}).style;
-  niri = pkgs.niri-unstable;
-in {
-  config = mkIf conf.niri.enable {
+in
+  mkIf conf.niri.enable {
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
     };
@@ -27,17 +23,15 @@ in {
 
     services.greetd = {
       enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd ${niri}/bin/niri-session";
-          user = conf.username;
-        };
+      settings = import ./greetd.nix {
+        config = config;
+        pkgs = pkgs;
       };
     };
 
     programs.niri = {
       enable = true;
-      package = niri;
+      package = pkgs.niri-unstable;
     };
 
     services.upower = {
@@ -61,11 +55,13 @@ in {
       services.swayosd = {
         enable = true;
         topMargin = 0.8;
-        stylePath = swayosd-style;
+        stylePath =
+          pkgs.writeText "swayosd.css"
+          (import ./swayosd.css.nix {config = config;}).style;
       };
 
       programs.niri = {
-        package = niri;
+        package = config.programs.niri.package;
         settings = import ./niri.conf.nix {
           lib = lib;
           config = config;
@@ -127,5 +123,4 @@ in {
         icons = false;
       };
     };
-  };
-}
+  }
