@@ -32,7 +32,6 @@
 
   hardware = {
     enableRedistributableFirmware = true;
-    enableAllFirmware = true;
     cpu.amd.updateMicrocode = true;
   };
 }
