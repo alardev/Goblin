@@ -16,7 +16,7 @@ end
 
 set -l ssh
 if test -n "$SSH_CLIENT"
-    set ssh (set_color brblack)"$USER@$hostname"
+    set ssh (set_color brblack)"\t$USER@$hostname"(set_color normal)
 end
 
 set -l git
@@ -24,4 +24,4 @@ set -l IS_GIT_REPO (command git rev-parse --is-inside-work-tree &>/dev/null)
 if test -n "$IS_GIT_REPO"
 end
 
-string join "" -- $stat $path \n $nix $prompt
+string join "" -- $stat $path $ssh \n $nix $prompt
