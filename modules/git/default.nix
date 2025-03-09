@@ -15,7 +15,7 @@ in
           forceSSL = true;
           locations = {
             "/" = {
-              proxyPass = "http://localhost:${toString cfg.ports.local}";
+              proxyPass = "http://unix:/run/forgejo/socket";
             };
           };
         };
@@ -32,7 +32,8 @@ in
           server = {
             DOMAIN = cfg.domain.full;
             ROOT_URL = "https://${cfg.domain.full}";
-            HTTP_PORT = cfg.ports.local;
+            PROTOCOL = "http+unix";
+            HTTP_ADDR = "/run/forgejo/socket";
           };
           service.DISABLE_REGISTRATION = true;
           actions = {

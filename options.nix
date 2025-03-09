@@ -207,12 +207,6 @@ in {
             default = null;
           };
         };
-        ports = {
-          local = mkOption {
-            type = nullOr port;
-            default = null;
-          };
-        };
       };
 
       username = mkOption {

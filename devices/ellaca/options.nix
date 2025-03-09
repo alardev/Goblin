@@ -51,9 +51,6 @@ in {
         full = "git.${web-domain}";
         base = web-domain;
       };
-      ports = {
-        local = 3000;
-      };
     };
 
     stateVersion = "25.05";
