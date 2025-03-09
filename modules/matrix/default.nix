@@ -28,8 +28,10 @@ in
 
       services.conduwuit = {
         enable = true;
+        group = "nginx";
         settings.global = {
           server_name = cfg.domain.full;
+          unix_socket_path = "/run/conduwuit/socket";
           allow_registration = false;
         };
       };
@@ -37,6 +39,10 @@ in
       networking.firewall.allowedTCPPorts = [8448];
     }
     {
-      services.nginx.virtualHosts.${cfg.domain.full}.locations."/".proxyPass = "http://unix:/run/conduwuit/socket";
+      services.nginx.virtualHosts.${cfg.domain.full}.locations = {
+        "/" = {
+          proxyPass = "http://unix:/run/conduwuit/socket";
+        };
+      };
     }
   ])
