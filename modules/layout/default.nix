@@ -18,5 +18,5 @@ in
       };
     };
 
-    console.keyMap = "us";
+    console.useXkbConfig = true;
   }
