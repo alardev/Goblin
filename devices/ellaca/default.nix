@@ -17,7 +17,6 @@
     loader = {
       grub = {
         devices = ["/dev/sda"];
-        useOSProber = true;
         efiSupport = true;
         efiInstallAsRemovable = true;
       };
