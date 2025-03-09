@@ -1,12 +1,10 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: let
   inherit (config) conf;
   inherit (config.conf) keys;
-  inherit (lib.strings) concatMapStrings;
 in {
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
