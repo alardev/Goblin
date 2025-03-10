@@ -89,10 +89,6 @@ in
         session.rcpt = {
           directory = "'internal'";
         };
-        authentication.fallback-admin = {
-          user = "admin";
-          secret = "%{file:/var/lib/stalwart-mail/secret/admin}%";
-        };
       };
     };
   }
