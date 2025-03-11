@@ -33,7 +33,6 @@ in
         config.local-keys = [
           "certificate.default.cert"
           "certificate.default.private-key"
-          "authentication.fallback-admin.secret"
         ];
         server = {
           hostname = cfg.domain;
