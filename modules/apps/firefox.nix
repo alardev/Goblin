@@ -113,6 +113,20 @@ pkgs: {
             ];
             definedAliases = ["@no"];
           };
+          "Nix Wiki" = {
+            urls = [
+              {
+                template = "https://wiki.nixos.org/w/index.php";
+                params = [
+                  {
+                    name = "search";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            definedAliases = ["@nw"];
+          };
           "Arch Wiki" = {
             urls = [
               {
