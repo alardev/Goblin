@@ -146,7 +146,7 @@ in
       };
 
       programs = {
-        firefox = import ./firefox.nix pkgs;
+        firefox = import ./firefox.conf.nix pkgs;
 
         thunderbird = {
           enable = true;
