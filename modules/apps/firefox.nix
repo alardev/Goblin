@@ -168,6 +168,7 @@ pkgs: {
       settings = {
         "browser.aboutConfig.showWarning" = false;
         "browser.bookmarks.addedImportButton" = false;
+        "browser.link.open_newwindow" = 2;
         "browser.newtabpage.enabled" = false;
         "browser.preferences.moreFromMozilla" = false;
         "browser.shell.checkDefaultBrowser" = false;
