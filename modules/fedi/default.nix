@@ -15,8 +15,10 @@
   blobhaj = pkgs.callPackage ./blobhaj.nix {};
   blobhajFlags = pkgs.callPackage ./blobhajFlags.nix {};
   favicon = pkgs.callPackage ./favicon.nix {};
+  iceshrimp = pkgs.callPackage ./iceshrimp/iceshrimp.nix;
 in
   mkIf cfg.enable {
+    environment.systemPackages = [iceshrimp];
     services.akkoma = {
       enable = true;
       frontends.primary = {
