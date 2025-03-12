@@ -11,5 +11,11 @@ in
       owner = "iceshrimp";
       repo = "Iceshrimp.NET";
       rev = version;
+      hash = "";
     };
+
+    installPhase = ''
+      mkdir -p $out
+      make
+    '';
   }
