@@ -1,6 +1,7 @@
 {...}: let
   email-domain = "chpu.eu";
   web-domain = "twoneis.site";
+  new-domain = "miraculous.place";
 in {
   conf = {
     host = "server";
@@ -8,6 +9,7 @@ in {
       domains = [
         email-domain
         web-domain
+        new-domain
       ];
       email = "mira@${email-domain}";
     };
