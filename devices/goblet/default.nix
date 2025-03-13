@@ -16,12 +16,12 @@ in {
     };
   };
 
-  networking.hostName = "inkvine";
+  networking.hostName = "goblet";
 
   boot = {
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod"];
-      luks.devices.root.device = "/dev/disk/by-label/CRYPT";
+      #luks.devices.root.device = "/dev/disk/by-label/CRYPT";
       kernelModules = ["amdgpu"];
     };
     kernelPackages = pkgs.linuxPackages_latest;
@@ -30,6 +30,7 @@ in {
         enable = mkDefault true;
         editor = false;
       };
+      grub.device = "nodev";
       efi.canTouchEfiVariables = true;
     };
   };
@@ -44,27 +45,12 @@ in {
       fsType = "btrfs";
       options = ["subvol=root" "compress=zstd" "noatime"];
     };
-    "/nix" = {
-      device = "/dev/disk/by-label/ROOT";
-      fsType = "btrfs";
-      options = ["subvol=nix" "compress=zstd" "noatime"];
-      neededForBoot = true;
-    };
-    "/swap" = {
-      device = "/dev/disk/by-label/ROOT";
-      fsType = "btrfs";
-      options = ["subvol=swap" "noatime"];
-    };
-  };
-  swapDevices = [{device = "/swap/swapfile";}];
+ };
+  swapDevices = [];
 
   services = {
     fwupd.enable = true;
     power-profiles-daemon.enable = true;
-    btrfs.autoScrub = {
-      enable = true;
-      fileSystems = ["/"];
-    };
   };
 
   hardware = {

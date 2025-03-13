@@ -205,11 +205,8 @@ pkgs: {
       };
 
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-        bitwarden
         sponsorblock
         ublock-origin
-        pronoundb
-        youtube-nonstop
         enhancer-for-youtube
         firefox-color
         purpleadblock

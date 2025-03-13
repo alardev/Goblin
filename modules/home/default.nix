@@ -7,7 +7,7 @@ in {
 
     users.${conf.username} = {
       home = {
-        username = "twoneis";
+        username = "alar";
         homeDirectory = "/home/${conf.username}";
 
         stateVersion = conf.hmStateVersion;

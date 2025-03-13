@@ -1,6 +1,6 @@
 {...}: let
   email-domain = "chpu.eu";
-  web-domain = "twoneis.site";
+  web-domain = "goblet.site";
   new-domain = "miraculous.place";
 in {
   conf = {

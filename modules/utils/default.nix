@@ -35,8 +35,8 @@ in {
 
     programs.git = {
       enable = true;
-      userName = "twoneis";
-      userEmail = "git@chpu.eu";
+      userName = "alardev";
+      userEmail = "alar.okas@protonmail.com";
       extraConfig = {
         init.defaultBranch = "main";
         push.autoSetupRemote = true;

@@ -23,10 +23,20 @@
       url = "github:nixos/nixos-hardware";
     };
 
-    disko = {
-      url = "github:nix-community/disko/latest";
+    ironbar = {
+      url = "github:JakeStanger/ironbar";
+      inputs.nixpkgs.follows = "nixpkgs";     
+    };
+
+    anyrun = {
+      url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    #disko = {
+    #  url = "github:nix-community/disko/latest";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     nur = {
       url = "github:nix-community/nur";
@@ -37,10 +47,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #lanzaboote = {
+    #  url = "github:nix-community/lanzaboote/v0.4.2";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     nix-alien = {
       url = "github:thiagokokada/nix-alien";

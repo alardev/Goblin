@@ -8,7 +8,7 @@
 
   networking = {
     hostName = "ellaca";
-    domain = "twoneis.site";
+    domain = "goblet.site";
   };
 
   boot = {

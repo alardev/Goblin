@@ -211,7 +211,7 @@ in {
 
       username = mkOption {
         type = str;
-        default = "twoneis";
+        default = "alar";
       };
 
       stateVersion = mkOption {

@@ -7,11 +7,6 @@
   inherit (lib) mkIf mkForce;
   inherit (config) conf;
   mkXwlWrapper = import ../niri/xwl-wrapper.nix;
-  time = pkgs.makeDesktopItem {
-    name = "peaclock-desktop";
-    desktopName = "Time";
-    exec = "alacritty -e ${pkgs.peaclock}/bin/peaclock";
-  };
 in
   mkIf (conf.host != "server") {
     # Audio
@@ -76,10 +71,10 @@ in
             adwaita-qt
             adwaita-qt6
             loupe
-            spotify
+            #spotify
             amberol
-            signal-desktop
-            vesktop
+            #signal-desktop
+            #vesktop
             snapshot
             nautilus
             inkscape
@@ -87,16 +82,13 @@ in
             gnome-disk-utility
             fragments
             element-desktop
-            tor-browser
-            libreoffice-qt6
-            chromium
-            peaclock
-            fractal
-            element-desktop
-            papers
-          ]
-          ++ [
-            time
+            #tor-browser
+            #libreoffice-qt6
+            ungoogled-chromium
+            #peaclock
+            #fractal
+            #element-desktop
+            #papers
           ]
           ++ [
             (mkXwlWrapper {
@@ -106,16 +98,7 @@ in
             })
           ];
 
-        file = {
-          ".config/vesktop/settings.json" = {
-            source = ./vesktop.conf.json;
-          };
-          ".config/vesktop/settings/settings.json" = {
-            source = ./vencord.conf.json;
-          };
-        };
-
-        pointerCursor = import ./cursor.nix pkgs;
+         pointerCursor = import ./cursor.nix pkgs;
       };
 
       qt = {
@@ -161,9 +144,9 @@ in
 
         pandoc.enable = true;
 
-        alacritty = {
+        wezterm = {
           enable = true;
-          settings = import ./alacritty.conf.nix config;
+          #settings = import ./wezterm.conf.nix config;
         };
       };
     };

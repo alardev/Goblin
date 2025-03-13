@@ -13,9 +13,9 @@ in {
       xkb = {
         layout =
           if extraLayout.enable
-          then "custom,us"
-          else "us";
-        options = "compose:ralt";
+          then "ie,ua"
+          else "ie";
+        # doptions = "compose:ralt";
       };
     };
     touchpad = {
@@ -128,14 +128,14 @@ in {
   hotkey-overlay.skip-at-startup = true;
 
   spawn-at-startup = [
-    {command = ["waybar"];}
+    {command = ["ironbar"];}
   ];
 
   binds = {
     # Shortcuts
-    "Mod+Z".action.spawn = "alacritty";
+    "Mod+Z".action.spawn = "wezterm";
     "Mod+B".action.spawn = "firefox";
-    "Mod+Space".action.spawn = "fuzzel";
+    "Mod+Space".action.spawn = "anyrun";
 
     "XF86AudioRaiseVolume".action.spawn = [
       "swayosd-client"

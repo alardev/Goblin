@@ -8,14 +8,7 @@
 in
   mkIf cfg.enable {
     services.xserver.xkb = {
-      layout = "custom,us";
-      options = "compose:ralt";
-
-      extraLayouts."custom" = {
-        description = "custom dvorak-like layout.";
-        languages = ["en"];
-        symbolsFile = ./custom.xkb;
-      };
+      layout = "ie,ua";
     };
 
     console.useXkbConfig = true;
