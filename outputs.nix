@@ -1,22 +1,20 @@
 {
   nixpkgs,
-  lix,
   home-manager,
   nixos-hardware,
-#  disko,
+  #  disko,
+  chaotic,
   niri,
-  ironbar,
-  anyrun,
-#  lanzaboote,
+  lanzaboote,
   ...
 } @ inputs: let
   modules = [
     ./options.nix
     ./modules
-    lix.nixosModules.default
     niri.nixosModules.niri
     home-manager.nixosModules.home-manager
-    #lanzaboote.nixosModules.lanzaboote
+    lanzaboote.nixosModules.lanzaboote
+    chaotic.nixosModules.default
     #disko.nixosModules.disko
   ];
 in {
@@ -37,31 +35,17 @@ in {
         ]
         ++ modules;
     };
-
-    # ellaca = nixpkgs.lib.nixosSystem {
-    #   system = "x86_64-linux";
-    #   specialArgs = {
-    #     inherit inputs;
-    #   };
-    #   modules =
-    #     [
-    #       ./devices/ellaca
-    #     ]
-    #     ++ modules;
-    # };
   };
 
-  homeManagerConfigurations.goblet = inputs.hm.lib.homeManagerConfiguration {
+  homeConfigurations = {
+    # ... other configs
+    goblet = home-manager.lib.homeManagerConfiguration {
+      # Replace "configName" with a significant unique name
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [
-        # And add the home-manager module
-        inputs.ironbar.homeManagerModules.default
-        {
-          # And configure
-          programs.ironbar = {
-            enable = true;
-          };
-        }
+        ./home-manager/default.nix
+        chaotic.homeManagerModules.default # IMPORTANT
       ];
+    };
   };
 }

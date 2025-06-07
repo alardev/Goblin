@@ -125,10 +125,9 @@ in {
 
   screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S.png";
 
-  hotkey-overlay.skip-at-startup = true;
+  hotkey-overlay.skip-at-startup = false;
 
   spawn-at-startup = [
-    {command = ["ironbar"];}
   ];
 
   binds = {

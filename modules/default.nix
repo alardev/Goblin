@@ -4,25 +4,20 @@ in {
   imports = [
     ./apps
     ./containers
-    ./email
-    ./fedi
     ./firewall
     ./fonts
     ./games
-#    ./git
+    #    ./git
     ./home
     ./layout
-    ./matrix
     ./networking
-    ./nginx
     ./niri
     ./nix
     ./secureboot
     ./ssh
     ./utils
     ./vm
-    ./website
-#    ./yubikey
+    #    ./yubikey
   ];
 
   documentation.nixos.enable = false;

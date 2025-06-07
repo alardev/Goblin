@@ -22,35 +22,46 @@ in {
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod"];
       #luks.devices.root.device = "/dev/disk/by-label/CRYPT";
-      kernelModules = ["amdgpu"];
+      kernelModules = ["amdgpu kvm-amd"];
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     loader = {
       systemd-boot = {
-        enable = mkDefault true;
+        enable = true;
         editor = false;
       };
-      grub.device = "nodev";
-      efi.canTouchEfiVariables = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
     };
   };
 
   fileSystems = {
     "/boot" = {
-      device = "/dev/disk/by-label/BOOT";
+      device = "/dev/disk/by-uuid/B5A2-B366";
       fsType = "vfat";
+      options = ["fmask=0077" "dmask=0077"];
     };
     "/" = {
-      device = "/dev/disk/by-label/ROOT";
-      fsType = "btrfs";
-      options = ["subvol=root" "compress=zstd" "noatime"];
+      device = "/dev/disk/by-uuid/32b9fb56-5f98-49b4-a6f2-949512a8feb0";
+      fsType = "xfs";
     };
- };
+  };
   swapDevices = [];
+
+  chaotic.mesa-git.enable = true;
+  chaotic.hdr.enable = true;
 
   services = {
     fwupd.enable = true;
     power-profiles-daemon.enable = true;
+    logrotate.checkConfig = false;
+    scx = {
+      enable = true;
+      package = pkgs.scx_git.rustscheds;
+      scheduler = "scx_lavd";
+    };
   };
 
   hardware = {

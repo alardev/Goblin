@@ -10,7 +10,7 @@
   mkXwlWrapper = import ../niri/xwl-wrapper.nix;
   holo-script = pkgs.writeShellApplication {
     name = "holo-script";
-    runtimeInputs = [pkgs.steam pkgs.gamescope];
+    runtimeInputs = [pkgs.steam pkgs.gamescope_git];
     text = ''
       gamescope -f -r 60 -h 900 -F fsr -e --mangoapp -- steam -tenfoot
     '';
@@ -38,13 +38,13 @@ in
 
     home-manager.users.${conf.username} = {
       home.packages = [
-        pkgs.prismlauncher
         holo
         steam-wrapped
       ];
 
       programs.mangohud = {
         enable = true;
+        package = pkgs.mangohud_git;
         settings = {
           gamemode = true;
           refresh_rate = true;

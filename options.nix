@@ -11,14 +11,14 @@ in {
   options = {
     conf = {
       host = mkOption {
-        type = nullOr (enum ["server" "laptop" "desktop" "phone"]);
+        type = nullOr (enum ["server" "tablet" "laptop" "desktop" "phone"]);
         default = null;
       };
 
       niri = {
         enable = mkOption {
           type = bool;
-          default = host == "laptop" || host == "desktop";
+          default = host == "laptop" || host == "tablet" || host == "desktop";
         };
       };
 
@@ -86,126 +86,6 @@ in {
         enable = mkOption {
           type = bool;
           default = conf.host == "server";
-        };
-      };
-
-      nginx = {
-        enable = mkOption {
-          type = bool;
-          default = conf.host == "server";
-        };
-        domains = mkOption {
-          type = listOf str;
-          default = [];
-        };
-        email = mkOption {
-          type = nullOr str;
-          default = null;
-        };
-      };
-
-      email = {
-        enable = mkOption {
-          type = bool;
-          default = conf.host == "server";
-        };
-        domain = mkOption {
-          type = nullOr str;
-          default = null;
-        };
-        ports = {
-          smtp = mkOption {
-            type = nullOr port;
-            default = null;
-          };
-          imaps = mkOption {
-            type = nullOr port;
-            default = null;
-          };
-          smtps = mkOption {
-            type = nullOr port;
-            default = null;
-          };
-          local = mkOption {
-            type = nullOr port;
-            default = null;
-          };
-        };
-      };
-
-      website = {
-        enable = mkOption {
-          type = bool;
-          default = conf.host == "server";
-        };
-        domain = {
-          full = mkOption {
-            type = nullOr str;
-            default = null;
-          };
-          base = mkOption {
-            type = nullOr str;
-            default = null;
-          };
-        };
-      };
-
-      fedi = {
-        enable = mkOption {
-          type = bool;
-          default = conf.host == "server";
-        };
-        domain = {
-          full = mkOption {
-            type = nullOr str;
-            default = null;
-          };
-          base = mkOption {
-            type = nullOr str;
-            default = null;
-          };
-        };
-        email = mkOption {
-          type = nullOr str;
-          default = null;
-        };
-      };
-
-      matrix = {
-        enable = mkOption {
-          type = bool;
-          default = conf.host == "server";
-        };
-        domain = {
-          full = mkOption {
-            type = nullOr str;
-            default = null;
-          };
-          base = mkOption {
-            type = nullOr str;
-            default = null;
-          };
-        };
-        email = mkOption {
-          type = nullOr str;
-          default = null;
-        };
-      };
-
-      git = {
-        enable = mkOption {
-          type = bool;
-          default = conf.host == "server";
-        };
-        domain = {
-          full = mkOption {
-            type = nullOr str;
-            default = null;
-          };
-          base = mkOption {
-            type = nullOr str;
-            default = null;
-          };
         };
       };
 

@@ -4,10 +4,7 @@
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
-    lix = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # IMPORTANT
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -21,11 +18,6 @@
 
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";
-    };
-
-    ironbar = {
-      url = "github:JakeStanger/ironbar";
-      inputs.nixpkgs.follows = "nixpkgs";     
     };
 
     anyrun = {
@@ -47,10 +39,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #lanzaboote = {
-    #  url = "github:nix-community/lanzaboote/v0.4.2";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-alien = {
       url = "github:thiagokokada/nix-alien";

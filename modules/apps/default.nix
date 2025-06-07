@@ -40,27 +40,6 @@ in
       };
     };
 
-    # Regularly clean download folder
-    systemd = {
-      timers."clean-download" = {
-        wantedBy = ["timers.target"];
-        timerConfig = {
-          OnCalendar = "*-*-* 03:00:00";
-          Unit = "clean-download.service";
-        };
-      };
-
-      services."clean-download" = {
-        script = ''
-          ${pkgs.coreutils}/bin/rm -rf /home/${conf.username}/Downloads/*
-        '';
-        serviceConfig = {
-          Type = "oneshot";
-          User = "root";
-        };
-      };
-    };
-
     services.blueman.enable = true;
 
     home-manager.users.${conf.username} = {
@@ -98,7 +77,7 @@ in
             })
           ];
 
-         pointerCursor = import ./cursor.nix pkgs;
+        pointerCursor = import ./cursor.nix pkgs;
       };
 
       qt = {
