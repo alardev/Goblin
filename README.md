@@ -41,5 +41,5 @@ The following need to be oxidized:
 - presenterm
 
 ## Credits
-- Mira (twooneis) - forked from his repo
+- Mira (twooneis) - forked from her repo
 - billions of other souls from whom I scavenged bits and bolts
