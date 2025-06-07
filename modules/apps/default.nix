@@ -44,38 +44,34 @@ in
 
     home-manager.users.${conf.username} = {
       home = {
-        packages = with pkgs;
-          [
-            adwaita-icon-theme
-            adwaita-qt
-            adwaita-qt6
-            loupe
-            #spotify
-            amberol
-            #signal-desktop
-            #vesktop
-            snapshot
-            nautilus
-            inkscape
-            libresprite
-            gnome-disk-utility
-            fragments
-            element-desktop
-            #tor-browser
-            #libreoffice-qt6
-            ungoogled-chromium
-            #peaclock
-            #fractal
-            #element-desktop
-            #papers
-          ]
-          ++ [
-            (mkXwlWrapper {
-              pkgs = pkgs;
-              name = "Prusa";
-              pkg = "prusa-slicer";
-            })
-          ];
+        packages = with pkgs; [
+          adwaita-icon-theme
+          adwaita-qt
+          adwaita-qt6
+          loupe
+          #spotify
+          amberol
+          #signal-desktop
+          #vesktop
+          snapshot
+          nautilus
+          inkscape
+          libresprite
+          gnome-disk-utility
+          fragments
+          telegram-desktop_git
+          proton-ge-custom
+          #tor-browser
+          #libreoffice-qt6
+          ungoogled-chromium
+          wayland_git
+          wayland-protocols_git
+          gh
+          #peaclock
+          #fractal
+          #element-desktop
+          #papers
+        ];
 
         pointerCursor = import ./cursor.nix pkgs;
       };

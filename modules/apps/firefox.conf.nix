@@ -1,5 +1,6 @@
 pkgs: {
   enable = true;
+  package = pkgs.firedragon;
   profiles = {
     "default" = {
       id = 0;
@@ -191,7 +192,7 @@ pkgs: {
         "browser.tabs.closeWindowWithLastTab" = true;
         "browser.tabs.opentabfor.middleclick" = false;
         "browser.toolbars.bookmarks.visibility" = "never";
-        "browser.translation.enable" = false;
+        "browser.translation.enable" = true;
         "dom.security.https_only_mode" = true;
         "extensions.pocket.enabled" = false;
         "gfx.webrender.all" = true;
@@ -199,7 +200,7 @@ pkgs: {
         "media.cache_readhead_limit" = 9999;
         "media.cache_resume_threshold" = 9999;
         "medai.ffmpeg.vaapi.enabled" = true;
-        "media.videocontrols.picture-in-picture.enabled" = false;
+        "media.videocontrols.picture-in-picture.enabled" = true;
         "signon.rememberSignons" = false;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };

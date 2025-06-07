@@ -13,6 +13,31 @@ in {
     home.packages = with pkgs; [
       man-pages
       man-pages-posix
+      uutils-coreutils-noprefix
+      ripgrep
+      ripgrep-all
+      fd
+      bat
+      eza
+      zoxide
+      xh
+      zellij
+      gitui
+      dust
+      dua
+      hyperfine
+      bacon
+      cargo-info
+      fselect
+      rusty-man
+      delta
+      tokei
+      wiki-tui
+      just
+      mask
+      mprocs
+      presenterm
+      evil-helix_git
     ];
 
     home.file = {
@@ -24,6 +49,10 @@ in {
     programs.man = {
       enable = true;
     };
+
+    programs.yazi.enable = true;
+
+    programs.starship.enable = true;
 
     programs.less = {
       enable = true;
@@ -43,13 +72,19 @@ in {
       };
     };
 
-    programs.helix = {
+    programs.zoxide = {
       enable = true;
-      defaultEditor = true;
-      extraPackages = with pkgs; [nil marksman];
-      settings = import ./helix.conf.nix {config = config;};
-      languages = import ./helix-languages.conf.nix {};
+      enableFishIntegration = true;
+      enableBashIntegration = true;
     };
+
+    # programs.helix = {
+    #   enable = true;
+    #   defaultEditor = true;
+    #   extraPackages = with pkgs; [nil marksman];
+    #   settings = import ./helix.conf.nix {config = config;};
+    #   languages = import ./helix-languages.conf.nix {};
+    # };
 
     programs.direnv = {
       enable = true;

@@ -1,6 +1,6 @@
 {...}: {
   conf = {
-    host = "laptop";
+    host = "tablet";
     secureboot.enable = true;
     yubikey.login = true;
 
