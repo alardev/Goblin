@@ -8,7 +8,7 @@
 in
   mkIf cfg.enable {
     services.xserver.xkb = {
-      layout = "ie,ua";
+      layout = "us";
     };
 
     console.useXkbConfig = true;
