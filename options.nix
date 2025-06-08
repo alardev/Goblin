@@ -136,6 +136,9 @@ in {
         love = "#eb6f92";
         gold = "#f6c177";
         rose = "#ebbcba";
+        darkgreen = "#06402B";
+        olive = "#636B2F";
+        brown = "#663C1F";
         pine = "#31748f";
         foam = "#9ccfd8";
         iris = "#c4a7e7";

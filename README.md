@@ -6,9 +6,6 @@ It's an utterly autistic desktop rice, which is why I called it Goblin.
 
 ## Features
 - Niri scrollable tiling WM
-- EWW statusbar and widgets
-- SWWW wallpaper service
-- Regreet graphical greeter(login screen)
 - Wezterm + Starship + Fish shell
 - Lanzaboote disk encryption
 - Anyrun application runner
@@ -20,6 +17,11 @@ It's an utterly autistic desktop rice, which is why I called it Goblin.
 The following need to be oxidized:
 - Lockscreen (wlsleephandler-rs?)
 - notifications (EWW?)
+- wl-gammarelay-rs for display color temp and brightness
+- woomer for zooming
+- squeekboard for on-screen keyboard
+- SWWW wallpaper service
+- Regreet graphical greeter(login screen)
 
 ## Other utilities
 - uutils-coreutils-prefix
@@ -42,4 +44,4 @@ The following need to be oxidized:
 
 ## Credits
 - Mira (twooneis) - forked from his repo
-- billions of other souls from whom I scavenged bits and bolts
+- Billions of other souls from whom I scavenged bits and bolts

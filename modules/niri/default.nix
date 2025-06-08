@@ -91,15 +91,17 @@ in
 
       services.mako = {
         enable = true;
-        defaultTimeout = 5000;
-        maxVisible = 3;
-        font = "AlegreyaSans";
-        backgroundColor = theme.base;
-        borderColor = theme.muted;
-        textColor = theme.text;
-        borderSize = 1;
-        borderRadius = 8;
-        icons = false;
+        settings = {
+          defaultTimeout = 5000;
+          maxVisible = 3;
+          font = "AlegreyaSans";
+          backgroundColor = theme.base;
+          borderColor = theme.muted;
+          textColor = theme.text;
+          borderSize = 1;
+          borderRadius = 8;
+          icons = false;
+        };
       };
     };
   }

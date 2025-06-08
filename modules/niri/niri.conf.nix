@@ -1,6 +1,6 @@
 {
   lib,
-  config,
+  config, 
   pkgs,
   ...
 }: let
@@ -11,12 +11,10 @@ in {
   input = {
     keyboard = {
       xkb = {
-        layout =
-          if extraLayout.enable
-          then "ie,ua"
-          else "ie";
-        # doptions = "compose:ralt";
-      };
+        layout = "ee,ua,ru";
+        variant = "us,phonetic,phonetic";
+        options = "grp:lalt_lshift_toggle";
+      };      
     };
     touchpad = {
       tap = true;
@@ -87,8 +85,8 @@ in {
     focus-ring = {
       width = 2;
       active.gradient = {
-        to = config.theme.rose;
-        from = config.theme.pine;
+        to = config.theme.darkgreen;
+        from = config.theme.olive;
         in' = "oklch shorter hue";
         angle = 135;
       };
@@ -96,8 +94,11 @@ in {
     };
 
     preset-column-widths = [
+      {proportion = 0.15;}
       {proportion = 0.25;}
+      {proportion = 0.33;}
       {proportion = 0.5;}
+      {proportion = 0.66;}
       {proportion = 0.75;}
     ];
 

@@ -9,12 +9,12 @@ pkgs: {
         default = "DuckDuckGoo";
         privateDefault = "DuckDuckGoo";
         engines = {
-          "DuckDuckGo".metaData.hidden = true;
-          "Google".metaData.hidden = true;
-          "Amazon.com".metaData.hidden = true;
-          "Bing".metaData.hidden = true;
-          "Wikipedia (en)".metaData.hidden = true;
-          "DuckDuckGoo" = {
+          "ddg".metaData.hidden = true;
+          "google".metaData.hidden = true;
+          "amazondotcom-us".metaData.hidden = true;
+          "bing".metaData.hidden = true;
+          "wikipedia".metaData.hidden = true;
+          "ddg" = {
             urls = [
               {
                 template = "https://duckduckgo.com/";
@@ -28,7 +28,7 @@ pkgs: {
             ];
             definedAliases = ["@ddg"];
           };
-          "Googlee" = {
+          "google" = {
             urls = [
               {
                 template = "https://google.com/search";
@@ -42,7 +42,7 @@ pkgs: {
             ];
             definedAliases = ["@g"];
           };
-          "Wikipedia" = {
+          "wikipedia" = {
             urls = [
               {
                 template = "https://en.wikipedia.org/wiki/Special:Search";
@@ -56,7 +56,7 @@ pkgs: {
             ];
             definedAliases = ["@wiki"];
           };
-          "YouTube" = {
+          "youTube" = {
             urls = [
               {
                 template = "https://youtube.com/results";
@@ -167,10 +167,10 @@ pkgs: {
         };
         force = true;
         order = [
-          "DuckDuckGoo"
-          "Googlee"
-          "Wikipedia"
-          "YouTube"
+          "ddg"
+          "googlee"
+          "wikipedia"
+          "youTube"
           "Nix Packages"
           "Nix Options"
           "Arch Wiki"
