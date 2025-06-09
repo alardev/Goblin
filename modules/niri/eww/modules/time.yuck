@@ -1,0 +1,9 @@
+(defpoll clock_ampm   :interval "1s" "date +%p")
+(defpoll clock_hour   :interval "1s" "date +%I")
+(defpoll clock_minute :interval "1s" "date +%M")
+(defpoll clock_second :interval "1s" "date +%S")
+
+(defwidget time []
+	(box :class "module" :space-evenly "false" :orientation "h" :spacing 3
+		(label :text {replace("${clock_ampm}", '\s', '')}    :class "ampm")
+		(label :text {replace("${clock_hour}:${clock_minute}:${clock_second}", '\s', '')} :class "time")))

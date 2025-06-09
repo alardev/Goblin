@@ -1,0 +1,12 @@
+(defwidget battery []
+		(circular-progress 
+			:active {EWW_BATTERY != ""}
+			:visible {EWW_BATTERY != ""}
+			:tooltip "Battery: ${EWW_BATTERY["BAT0"]["capacity"]}%"
+			:class "battery-progress"
+			:value {EWW_BATTERY["BAT0"]["capacity"]}
+			:start-at 75
+			:thickness 4
+			:clockwise true
+			(label :class "inner-icon"
+				   :text {EWW_BATTERY["BAT0"]["status"] == "Charging" ? "" : EWW_BATTERY["BAT0"]["capacity"] > 74 ? "" : EWW_BATTERY["BAT0"]["capacity"] > 50 ? "" : EWW_BATTERY["BAT0"]["capacity"] > 25 ? "" : ""})))

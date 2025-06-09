@@ -1,0 +1,63 @@
+;; Variables
+;; (deflisten workspaces
+;;  	"scripts/workspaces.sh")
+	
+;; (include "./modules/status.yuck")
+;; (include "./modules/network.yuck")
+;; (include "./modules/brightness.yuck")
+;; (include "./modules/volume.yuck")
+(include "./modules/time.yuck")
+(include "./modules/date.yuck")
+
+(defwindow main-bar
+           :monitor '["<primary>", 0]'
+           :geometry (geometry :x "0%"
+                               :y "1%"
+                               :width "97%"
+                               :height "2%"
+                               :anchor "top center")
+           :vexpand false
+           ;; X11
+           :stacking "fg"
+           :reserve (struts :distance "4%" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+           ;; Wayland
+           :exclusive true
+           :focusable "ondemand"
+           :namespace "statusbar"
+  (bar :screen 0))
+
+(defwidget bar [screen]
+	(centerbox :orientation "h"
+		(box :halign "start"
+		   :valign "center"
+			 :class "segment-left"
+			 (left))
+		(box :halign "center"
+		   :valign "center"
+			 :class "segment-middle"
+			 (middle))
+		(box :halign "end"
+		   :valign "center"
+			 :hexpand false
+			 :class "segment-right"
+			 (right))))
+
+(defwidget left []
+	(box :class "segment-left" :space-evenly "false" :orientation "h" :spacing 3 :hexpand true
+  "FIXME: HERE BE WORKSPACES"))
+
+(defwidget middle []
+	(box :class "segment-middle" :space-evenly "false" :orientation "h" :spacing 3 :hexpand true
+		(time :o "h")
+		(date :o "h")))
+
+(defwidget right []
+	(box :class "segment-right" :space-evenly "false" :orientation "h" :spacing 3 :hexpand true
+		;; (volume)
+	  ;; (brightness)
+		"FIXME: HERE BE STATUS AND VOLUME AND SHIT"))
+
+;; (defwidget workspaces []
+;; 	 (literal :content workspaces))
