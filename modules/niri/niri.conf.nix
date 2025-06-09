@@ -125,7 +125,7 @@ in {
     {
       matches = [
         {
-          app-id = "firefox|firedragon|chromium$";
+          app-id = "firefox$|firedragon$|chromium$";
           title = "^Picture-in-Picture$";
         }
       ]; 
@@ -138,7 +138,7 @@ in {
     }
   ];
 
-  prefer-no-csd = true;
+  prefer-no-csd = false;
 
   screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S.png";
 

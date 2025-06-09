@@ -18,6 +18,7 @@ in {
       ripgrep-all
       fd
       bat
+      bottom
       eza
       zoxide
       xh
