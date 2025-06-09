@@ -23,7 +23,7 @@ in
 
     programs.niri = {
       enable = true;
-      package = pkgs.niri_git;
+      package = pkgs.niri-unstable;
     };
 
     services.upower = {
@@ -43,6 +43,7 @@ in
         swayidle
         wl-clipboard-rs
         anyrun
+        xwayland-satellite
       ];
 
       services.swayosd = {
@@ -60,6 +61,11 @@ in
           config = config;
           pkgs = pkgs;
         };
+      };
+
+      programs.eww = {
+        enable = true;
+        configDir = ./eww;
       };
 
       programs.swaylock = {

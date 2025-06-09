@@ -144,8 +144,20 @@ in {
 
   hotkey-overlay.skip-at-startup = false;
 
+  environment = {
+    DISPLAY = ":0";
+  };
+
   spawn-at-startup = [
+    {command = ["eww" "open" "main-bar"];}
+    {command = ["xwayland-satellite" ":0"];}
   ];
+
+  # xwayland-satellite = {
+  #     # off
+  #     path = "xwayland-satellite";
+  # };
+
 
   binds = {
     # Shortcuts
