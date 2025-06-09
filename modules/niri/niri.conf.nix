@@ -119,6 +119,22 @@ in {
         bottom-right = 8.0;
       };
       clip-to-geometry = true;
+    }    
+    # Open the Firefox/Firedragon Picture-in-Picture window at the bottom-left corner of the screen
+    # with a small gap.
+    {
+      matches = [
+        {
+          app-id = "firefox|firedragon|chromium$";
+          title = "^Picture-in-Picture$";
+        }
+      ]; 
+      open-floating = true;
+      default-floating-position = {
+        x = 32;
+        y = 32;
+        relative-to = "bottom-left";
+      };
     }
   ];
 
