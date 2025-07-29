@@ -25,7 +25,10 @@ in
     };
 
     # Run statically linked and more
-    environment.systemPackages = [pkgs.nix-alien];
+    environment.systemPackages = [
+      pkgs.nix-alien
+      pkgs.umu-launcher
+    ];
     programs.nix-ld.enable = true;
 
     # Bluetooth
@@ -63,14 +66,35 @@ in
           proton-ge-custom
           #tor-browser
           #libreoffice-qt6
-          ungoogled-chromium
+          #ungoogled-chromium
           wayland_git
           wayland-protocols_git
           gh
+          hunspell
+          hunspellDicts.uk_UA
+          hunspellDicts.en_GB-ize
+          hunspellDicts.et_EE
+          nero-umu
+          bottles
           #peaclock
           #fractal
           #element-desktop
           #papers
+          cyme
+          pciutils
+          ch341eeprom
+          imsprog
+          flashrom
+          rustdesk
+          unzrip
+          # orca-slicer
+          caligula
+          umu-launcher
+          ntfs3g
+          hw-probe
+          iw
+          wpa_supplicant
+          wpa_supplicant_gui
         ];
 
         pointerCursor = import ./cursor.nix pkgs;
@@ -105,6 +129,7 @@ in
 
       programs = {
         firefox = import ./firefox.conf.nix pkgs;
+        chromium = import ./chromium.conf.nix pkgs;
 
         thunderbird = {
           enable = true;

@@ -30,7 +30,7 @@ in {
   users.users.${conf.username} = {
     isNormalUser = true;
     description = conf.username;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "input" "tty" "dialout"];
   };
 
   system.stateVersion = conf.stateVersion;

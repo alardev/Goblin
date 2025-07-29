@@ -1,6 +1,6 @@
 pkgs: {
   enable = true;
-  package = pkgs.firedragon;
+  package = pkgs.firefox-devedition;
   profiles = {
     "default" = {
       id = 0;

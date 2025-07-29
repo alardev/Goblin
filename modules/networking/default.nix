@@ -10,12 +10,15 @@
 in
   mkIf cfg.enable {
     users.users.${conf.username}.extraGroups = ["networkmanager"];
-
     home-manager.users.${conf.username}.home.packages = [pkgs.networkmanagerapplet];
     networking = {
-      networkmanager = {
+      wireless = {
         enable = true;
-        wifi.backend = "iwd";
+        iwd.enable = false;
+        iwd.settings.general.ControlPortOverNL80211 = false;
+        userControlled.enable = true;
+        athUserRegulatoryDomain = true;
+        dbusControlled = true;
       };
     };
   }

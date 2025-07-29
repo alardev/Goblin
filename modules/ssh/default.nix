@@ -10,6 +10,7 @@ in
   mkIf cfg.enable {
     services.openssh = {
       enable = true;
+      openFirewall = true;
       settings = {
         PasswordAuthentication = true;
       };

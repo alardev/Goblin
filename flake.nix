@@ -47,6 +47,11 @@
     nix-alien = {
       url = "github:thiagokokada/nix-alien";
     };
+
+    umu = {
+      url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: import ./outputs.nix inputs;

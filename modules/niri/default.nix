@@ -16,8 +16,30 @@ in
 
     services.greetd = {
       enable = true;
-      settings = import ./greetd.nix pkgs config;
+      settings = let
+        logincfg = pkgs.writeText "niri-login.conf" ''
+          hotkey-overlay {
+            skip-at-startup
+          }
+          window-rule {
+            open-focused true
+          }
+        '';
+      in {
+        default_session = {
+          user = "greeter";
+          command = lib.concatStringsSep " " [
+            "${pkgs.dbus}/bin/dbus-run-session"
+            "${config.programs.niri.package}/bin/niri -c ${logincfg} --"
+            "${pkgs.greetd.regreet}/bin/regreet;"
+            "${config.programs.niri.package}/bin/niri msg action quit --skip-confirmation"
+          ];
+        };
+      };
     };
+
+    users.users.greeter.home = "/var/greeter";
+    users.users.greeter.createHome = true;
 
     programs.regreet.enable = true;
 

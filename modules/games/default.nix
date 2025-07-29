@@ -10,7 +10,7 @@
   mkXwlWrapper = import ../niri/xwl-wrapper.nix;
   holo-script = pkgs.writeShellApplication {
     name = "holo-script";
-    runtimeInputs = [pkgs.steam pkgs.gamescope_git];
+    runtimeInputs = [pkgs.steam pkgs.gamescope];
     text = ''
       gamescope -f -r 60 -h 900 -F fsr -e --mangoapp -- steam -tenfoot
     '';

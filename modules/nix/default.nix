@@ -31,6 +31,7 @@
       inputs.nur.overlays.default
       inputs.niri.overlays.niri
       inputs.nix-alien.overlays.default
+      inputs.umu.overlays.default
     ];
   };
   environment.systemPackages = [inputs.alejandra.defaultPackage.${pkgs.system}];
