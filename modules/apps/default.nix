@@ -18,7 +18,7 @@ in
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        jack.enable = mkForce false;
+        jack.enable = true;
       };
       # Needed for some features in nautilus such as auto-mounting and trash
       gvfs.enable = true;
@@ -74,6 +74,7 @@ in
           hunspellDicts.uk_UA
           hunspellDicts.en_GB-ize
           hunspellDicts.et_EE
+          hunspellDicts.en_US
           nero-umu
           bottles
           #peaclock
@@ -95,6 +96,9 @@ in
           iw
           wpa_supplicant
           wpa_supplicant_gui
+          helvum
+          myxer
+          mixxc
         ];
 
         pointerCursor = import ./cursor.nix pkgs;

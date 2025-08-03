@@ -38,7 +38,6 @@ in {
       mask
       mprocs
       presenterm
-     # evil-helix_git
     ];
 
     home.file = {
@@ -80,12 +79,13 @@ in {
     };
 
     programs.helix = {
-       enable = true;
-       defaultEditor = true;
-       extraPackages = with pkgs; [nil marksman];
-       settings = import ./helix.conf.nix {config = config;};
-       languages = import ./helix-languages.conf.nix {};
-     };
+      enable = true;
+      defaultEditor = true;
+      package = pkgs.evil-helix_git;
+      extraPackages = with pkgs; [nil marksman];
+      settings = import ./helix.conf.nix {config = config;};
+      languages = import ./helix-languages.conf.nix {};
+    };
 
     programs.direnv = {
       enable = true;

@@ -1,7 +1,7 @@
 {config, ...}: let
   inherit (config.conf) keys;
 in {
-  theme = "rose_pine";
+  theme = "hex_toxic";
 
   editor = {
     cursorline = true;
